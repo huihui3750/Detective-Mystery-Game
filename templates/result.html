@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        案件結局｜CASE 001
+    </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <h1>🔎 CASE CLOSED</h1>
+
+        <p>
+            CASE 001｜消失的緋紅之心
+        </p>
+
+    </header>
+
+
+    <hr>
+
+
+    <main>
+
+
+        <!-- 評價 -->
+
+        <section>
+
+            <h2>
+                {{ title }}
+            </h2>
+
+
+            <h1>
+                評價：{{ rank }}
+            </h1>
+
+
+            <p>
+                {{ message }}
+            </p>
+
+        </section>
+
+
+        <hr>
+
+
+        <!-- 玩家答案 -->
+
+        <section>
+
+            <h2>
+                📋 你的推理結果
+            </h2>
+
+
+            <p>
+
+                <strong>
+                你指控的人：
+            </strong> {{ accused_person.name }} {% if result.culprit_correct %} ✅ {% else %} ❌ {% endif %}
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                展示櫃開啟方式：
+            </strong> {% if result.method_correct %} ✅ 推理正確 {% else %} ❌ 推理錯誤 {% endif %}
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                王志明說謊原因：
+            </strong> {% if result.wang_correct %} ✅ 推理正確 {% else %} ❌ 推理錯誤 {% endif %}
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                正確推理：
+            </strong> {{ result.score }} / 3
+
+            </p>
+
+        </section>
+
+
+        <hr>
+
+
+        <!-- 真相 -->
+
+        <section>
+
+            <h2>
+                🔓 案件真相
+            </h2>
+
+
+            <p>
+
+                真正偷走 「緋紅之心」的人是：
+
+            </p>
+
+
+            <h2>
+                陳雨晴
+            </h2>
+
+
+            <p>
+
+                20:55， 陳雨晴偶然看見飯店經理林雅婷 輸入存放備用鑰匙的抽屜密碼。
+
+            </p>
+
+
+            <p>
+
+                21:03左右， 她發現保全王志明離開監控室。
+
+            </p>
+
+
+            <p>
+
+                21:06， 她進入三樓辦公室。
+
+            </p>
+
+
+            <p>
+
+                21:07， 她使用看到的密碼打開抽屜， 取得展示櫃備用鑰匙。
+
+            </p>
+
+
+            <p>
+
+                21:09， 她使用鑰匙打開展示櫃。
+
+            </p>
+
+
+            <p>
+
+                21:10， 她取走了紅寶石項鍊 「緋紅之心」。
+
+            </p>
+
+
+            <p>
+
+                21:11， 她將備用鑰匙放回原處， 隨後返回廚房。
+
+            </p>
+
+        </section>
+
+
+        <hr>
+
+
+        <!-- 王志明 -->
+
+        <section>
+
+            <h2>
+                🚪 王志明為什麼說謊？
+            </h2>
+
+
+            <p>
+
+                王志明確實隱瞞了自己的行蹤。
+
+            </p>
+
+
+            <p>
+
+                他在21:04～21:11之間 擅自離開監控室， 到飯店後門抽菸。
+
+            </p>
+
+
+            <p>
+
+                因為擔心擅離職守受到處分， 他才謊稱自己整晚都在監控室。
+
+            </p>
+
+
+            <p>
+
+                但是他並沒有偷走珠寶。
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                說謊者，不一定就是犯人。
+            </strong>
+
+            </p>
+
+        </section>
+
+
+        <hr>
+
+
+        <!-- 張柏翰 -->
+
+        <section>
+
+            <h2>
+                📷 張柏翰隱瞞了什麼？
+            </h2>
+
+
+            <p>
+
+                張柏翰也沒有完全說實話。
+
+            </p>
+
+
+            <p>
+
+                21:08左右， 他曾偷偷進入禁止賓客進入的區域， 想近距離拍攝珠寶。
+
+            </p>
+
+
+            <p>
+
+                他看到一名穿著飯店制服的人 從辦公室方向離開， 但沒有看清楚對方的臉。
+
+            </p>
+
+
+            <p>
+
+                因為害怕自己成為嫌疑人， 他選擇隱瞞這件事。
+
+            </p>
+
+        </section>
+
+
+        <hr>
+
+
+        <!-- 核心 -->
+
+        <section>
+
+            <h2>
+                🧠 CASE 001
+            </h2>
+
+
+            <blockquote>
+
+                每個人都有秘密， 但並非每個秘密都是罪行。
+
+            </blockquote>
+
+        </section>
+
+
+        <hr>
+
+
+        <!-- 操作 -->
+
+        <section>
+
+            <form action="{{ url_for('reset_game') }}" method="post" onsubmit="return confirm('確定清除所有調查進度並重新開始嗎？');"><button type="submit">🔄 重新挑戰 CASE 001</button></form>
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>調查總部｜消失的緋紅之心</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+</head>
+
+<body class="hq-body">
+{% include "_quicknav.html" %}
+
+    <main class="hq-container">
+
+        <!-- ==================================================
+         案件標題
+    =================================================== -->
+
+        <section class="hq-case-header">
+
+            <div class="hq-case-top">
+                <span>CASE FILE 001</span>
+                <span>INVESTIGATION IN PROGRESS</span>
+            </div>
+
+            <div class="hq-title-area">
+
+                <div>
+                    <p class="hq-label">VICTORIA HOTEL · JEWEL THEFT</p>
+
+                    <h1>消失的緋紅之心</h1>
+
+                    <p class="hq-description">
+                        維多利亞飯店慈善晚宴期間， 展示中的珍貴珠寶「緋紅之心」離奇失竊。 案發時間被鎖定在晚上 21:00 至 21:15 之間。
+                    </p>
+                </div>
+
+                <div class="hq-case-stamp">
+                    <span>CASE</span>
+                    <strong>001</strong>
+                    <small>ACTIVE</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+         案件進度
+    =================================================== -->
+
+        <section class="hq-progress-section">
+
+            <div class="hq-section-heading">
+                <span>01</span>
+                <div>
+                    <small>CASE STATUS</small>
+                    <h2>案件狀態</h2>
+                </div>
+            </div>
+
+
+            <div class="hq-progress-content">
+
+                <div class="hq-time">
+
+                    <span>21:00</span>
+
+                    <div class="hq-time-line">
+                        <div class="hq-time-point"></div>
+                    </div>
+
+                    <span>21:15</span>
+
+                </div>
+
+                <p class="hq-time-caption">
+                    推定案發時間
+                </p>
+
+
+                <div class="hq-stats">
+
+                    <div class="hq-stat">
+
+                        <span class="hq-stat-label">
+                        EVIDENCE
+                    </span>
+
+                        <strong>
+                        {{ evidence_count }}
+                        <small>/ {{ total_evidence }}</small>
+                    </strong>
+
+                        <span>
+                        已取得證據
+                    </span>
+
+                    </div>
+
+
+                    <div class="hq-stat-divider"></div>
+
+
+                    <div class="hq-stat">
+
+                        <span class="hq-stat-label">
+                        DEDUCTION
+                    </span>
+
+                        <strong>
+                        {{ note_count }}
+                        <small>/ {{ total_notes }}</small>
+                    </strong>
+
+                        <span>
+                        自動整理筆記
+                    </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+         主調查區
+    =================================================== -->
+
+        <section class="hq-investigation">
+
+            <!-- 左側：目前任務 -->
+
+            <div class="hq-current-task">
+
+                <div class="hq-section-heading">
+
+                    <span>02</span>
+
+                    <div>
+                        <small>CURRENT OBJECTIVE</small>
+                        <h2>目前調查目標</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="hq-objective-box">
+                    <p class="hq-objective-number">OBJECTIVE {{ objective.step }}</p>
+                    <h3>{{ objective.title }}</h3>
+                    <p>{{ objective.detail }}</p>
+                    {% if objective.suspect_id is defined %}
+                    <a class="hq-primary-action" href="{{ url_for(objective.endpoint, suspect_id=objective.suspect_id) }}">{{ objective.button }} <span>→</span></a>
+                    {% else %}
+                    <a class="hq-primary-action" href="{{ url_for(objective.endpoint) }}">{{ objective.button }} <span>→</span></a>
+                    {% endif %}
+                </div>
+
+            </div>
+
+
+            <!-- 右側：功能 -->
+
+            <aside class="hq-menu">
+
+                <div class="hq-menu-header">
+                    <small>INVESTIGATION</small>
+                    <h2>調查項目</h2>
+                </div>
+
+
+                <a href="{{ url_for('investigate') }}" class="hq-menu-item">
+                    <span class="hq-menu-number">01</span>
+
+                    <div>
+                        <strong>現場調查</strong>
+                        <small>SCENE INVESTIGATION</small>
+                    </div>
+
+                    <span class="hq-arrow">→</span>
+                </a>
+
+
+                <a href="{{ url_for('suspect_list') }}" class="hq-menu-item">
+                    <span class="hq-menu-number">02</span>
+
+                    <div>
+                        <strong>嫌疑人訊問</strong>
+                        <small>INTERROGATION</small>
+                    </div>
+
+                    <span class="hq-arrow">→</span>
+                </a>
+
+
+                <a href="{{ url_for('evidence') }}" class="hq-menu-item">
+                    <span class="hq-menu-number">03</span>
+
+                    <div>
+                        <strong>證物檔案</strong>
+                        <small>EVIDENCE ARCHIVE</small>
+                    </div>
+
+                    <span class="hq-arrow">→</span>
+                </a>
+
+
+                <a href="{{ url_for('detective_notes') }}" class="hq-menu-item">
+                    <span class="hq-menu-number">04</span>
+
+                    <div>
+                        <strong>偵探筆記</strong>
+                        <small>DEDUCTION NOTES</small>
+                    </div>
+
+                    <span class="hq-arrow">→</span>
+                </a>
+
+                <a href="{{ url_for('deduction_board') }}" class="hq-menu-item">
+                    <span class="hq-menu-number">05</span>
+                    <div><strong>互動式推理板</strong><small>CLUE CONNECTION BOARD</small></div>
+                    <span class="hq-arrow">→</span>
+                </a>
+
+                <a href="{{ url_for('case_timeline') }}" class="hq-menu-item">
+                    <span class="hq-menu-number">06</span>
+                    <div><strong>案件時間線</strong><small>CASE TIMELINE</small></div>
+                    <span class="hq-arrow">→</span>
+                </a>
+
+            </aside>
+
+        </section>
+
+
+        <!-- ==================================================
+         最終指控
+    =================================================== -->
+
+        <section class="hq-final">
+
+            <div>
+
+                <small>
+                FINAL ACCUSATION
+            </small> {% if accusation_unlocked %}
+
+                <h2>
+                    案件已進入最終推理階段
+                </h2>
+
+                <p>
+                    證據與推理板關聯已達到指控條件。 確認你的推理後，選出真正的犯人。
+                </p>
+
+                {% else %}
+
+                <h2>
+                    最終指控尚未開放
+                </h2>
+
+                <p>
+                    至少取得 4 項證據、建立 2 組有效關聯，且完成監控時間或備用鑰匙相關的關鍵推論，才能進入最終指控；偵探筆記會自動整理進度。
+                </p>
+
+                {% endif %}
+
+            </div>
+
+
+            {% if accusation_unlocked %}
+
+            <a href="{{ url_for('accuse') }}" class="hq-accuse-button">
+                提出指控 →
+            </a> {% else %}
+
+            <div class="hq-locked">
+                LOCKED
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <footer class="hq-footer">
+
+            <span>
+            VICTORIA HOTEL INCIDENT · CASE 001
+        </span>
+
+            <a href="{{ url_for('case') }}">
+            返回案件資料
+        </a>
+
+        </footer>
+
+    </main>
+
+</body>
+
+</html>

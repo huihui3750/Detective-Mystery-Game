@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>案件時間線｜消失的緋紅之心</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='css/timeline.css') }}"><link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+</head>
+<body class="timeline-page">
+{% include "_quicknav.html" %}<header class="tl-top"><a href="{{ url_for('dashboard') }}">← 返回調查總部</a><span>CASE 001 / INVESTIGATION TIMELINE</span><a href="{{ url_for('deduction_board') }}">推理板 ↗</a></header>
+<main class="tl-wrap"><div class="tl-head"><p>VICTORIA HOTEL · CASE 001</p><h1>案件時間線</h1><div class="tl-summary">消失的緋紅之心｜已取得 {{ found }} / {{ total }} 項證據</div><p class="tl-tip">依時間排列已發現的紀錄與已解鎖的證詞；此處不判定犯人，線索關聯請前往推理板。</p></div>
+<section class="tl-board" aria-label="案件事件時間線">
+{% for event in events %}
+<article class="tl-event tl-{{ event.kind }}"><div class="tl-time">{{ event.time }}</div><div class="tl-dot" aria-hidden="true"></div><div class="tl-card"><div class="tl-card-top"><span>{% if event.kind == 'testimony' %}目擊證詞{% elif event.kind == 'statement' %}初步證詞{% else %}調查證據{% endif %}</span><small>{{ event.certainty }}</small></div><h2>{{ event.title }}</h2><p>{{ event.detail }}</p></div></article>
+{% endfor %}
+</section><div class="tl-foot"><p>此處僅供核對事件先後。若發現時間衝突，可前往訊問室查證，或到推理板驗證關聯。</p><div><a href="{{ url_for('investigate') }}">繼續現場調查 →</a><a href="{{ url_for('suspect_list') }}">前往訊問室 →</a></div></div></main></body></html>

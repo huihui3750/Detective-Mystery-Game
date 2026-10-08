@@ -1,0 +1,374 @@
+/* =========================================================
+   SCENE INVESTIGATION
+========================================================= */
+
+.scene-body {
+    margin: 0;
+    background: #f4f1ea;
+    color: #354255;
+}
+
+.scene-container {
+    width: min(1080px, calc(100% - 40px));
+    margin: 40px auto 70px;
+}
+
+/* HEADER */
+
+.scene-header {
+    padding: 32px 38px 36px;
+    background: #fdfcf9;
+    border-top: 5px solid #35465c;
+    border-bottom: 1px solid #d3cec4;
+}
+
+.scene-header-top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd8ce;
+    color: #9a8156;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.scene-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+    padding-top: 27px;
+}
+
+.scene-label {
+    margin: 0 0 5px;
+    color: #a6575d;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-align: left;
+}
+
+.scene-title h1 {
+    margin: 0;
+    color: #29394e;
+    font-size: 2.6rem;
+}
+
+.scene-title p {
+    max-width: 620px;
+    margin: 12px 0 0;
+    color: #6b737d;
+}
+
+.scene-back {
+    flex-shrink: 0;
+    padding: 10px 14px;
+    border: 1px solid #b7b2aa;
+    color: #5c6672;
+    font-size: 0.82rem;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.scene-back:hover {
+    border-color: #35465c;
+    color: #35465c;
+}
+
+/* SECTION TITLE */
+
+.scene-section-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.scene-section-title>span {
+    color: #b2935e;
+    font-family: Georgia, serif;
+    font-size: 1.7rem;
+}
+
+.scene-section-title small {
+    color: #9a8156;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+}
+
+.scene-section-title h2 {
+    margin: 2px 0 0;
+    color: #354255;
+    font-size: 1.15rem;
+}
+
+/* PROGRESS */
+
+.scene-progress {
+    padding: 32px 38px;
+    background: #f7f4ed;
+    border-bottom: 1px solid #d5d0c6;
+}
+
+.scene-progress-info {
+    display: grid;
+    grid-template-columns: 130px 1fr auto;
+    align-items: center;
+    gap: 28px;
+    margin-top: 25px;
+}
+
+.scene-progress-info strong {
+    color: #35465c;
+    font-size: 2rem;
+}
+
+.scene-progress-info span {
+    color: #9298a0;
+}
+
+.scene-progress-info p {
+    margin: 2px 0 0;
+    color: #7c838b;
+    font-size: 0.78rem;
+}
+
+.scene-progress-track {
+    height: 5px;
+    overflow: hidden;
+    background: #ddd9d0;
+}
+
+.scene-progress-bar {
+    height: 100%;
+    background: #a6575d;
+}
+
+.scene-progress-status {
+    color: #6f7780;
+    font-size: 0.8rem;
+}
+
+/* LOCATIONS */
+
+.scene-locations {
+    padding: 38px;
+    background: #fdfcf9;
+}
+
+.scene-location-intro {
+    margin: 18px 0 27px;
+    color: #777f88;
+}
+
+.scene-location-list {
+    border-top: 1px solid #d7d2c8;
+}
+
+.scene-location-card {
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    padding: 27px 0;
+    border-bottom: 1px solid #d7d2c8;
+    transition: 0.2s ease;
+}
+
+.scene-location-card:hover {
+    padding-left: 8px;
+}
+
+.scene-location-number {
+    color: #b2935e;
+    font-family: Georgia, serif;
+    font-size: 1.55rem;
+}
+
+.scene-location-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.scene-location-heading small {
+    color: #a0a4a8;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+}
+
+.scene-location-heading h2 {
+    margin: 3px 0 0;
+    color: #314056;
+    font-size: 1.35rem;
+}
+
+.scene-status {
+    height: fit-content;
+    padding: 5px 9px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.scene-status.completed {
+    background: #e4ece5;
+    color: #59705c;
+}
+
+.scene-status.investigating {
+    background: #eee6d5;
+    color: #887045;
+}
+
+.scene-status.not-started {
+    background: #ececef;
+    color: #777d85;
+}
+
+.scene-location-description {
+    margin: 13px 0 20px;
+    color: #6e7680;
+}
+
+.scene-location-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 15px;
+    border-top: 1px dashed #d9d4cb;
+}
+
+.scene-location-evidence small {
+    display: block;
+    margin-bottom: 2px;
+    color: #a0a4a8;
+    font-size: 0.6rem;
+    letter-spacing: 0.11em;
+}
+
+.scene-location-evidence strong {
+    color: #35465c;
+    font-size: 0.95rem;
+}
+
+.scene-enter {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 9px 14px;
+    background: #35465c;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.scene-enter:hover {
+    background: #27384d;
+    transform: translateX(3px);
+}
+
+/* TIP */
+
+.scene-tip {
+    padding: 30px 38px;
+    background: #eee9df;
+    border-left: 4px solid #b2935e;
+}
+
+.scene-tip-label {
+    color: #a6575d;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.scene-tip h3 {
+    margin: 6px 0 9px;
+    color: #354255;
+}
+
+.scene-tip p {
+    margin: 0;
+    color: #686f77;
+}
+
+.scene-tip blockquote {
+    margin: 20px 0 0;
+    padding: 13px 18px;
+    border-left: 2px solid #a6575d;
+    color: #5f6266;
+    font-family: Georgia, serif;
+}
+
+/* NAVIGATION */
+
+.scene-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    padding: 19px 8px;
+}
+
+.scene-navigation div {
+    display: flex;
+    gap: 22px;
+}
+
+.scene-navigation a {
+    color: #606d7d;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.scene-navigation a:hover {
+    color: #a6575d;
+}
+
+/* MOBILE */
+
+@media (max-width: 720px) {
+    .scene-container {
+        width: calc(100% - 24px);
+        margin-top: 18px;
+    }
+    .scene-header,
+    .scene-progress,
+    .scene-locations,
+    .scene-tip {
+        padding: 25px 22px;
+    }
+    .scene-title {
+        display: block;
+    }
+    .scene-back {
+        display: inline-block;
+        margin-top: 20px;
+    }
+    .scene-progress-info {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .scene-location-card {
+        grid-template-columns: 45px 1fr;
+    }
+    .scene-location-heading {
+        flex-direction: column;
+    }
+    .scene-location-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .scene-navigation {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .scene-navigation div {
+        flex-wrap: wrap;
+    }
+}
+

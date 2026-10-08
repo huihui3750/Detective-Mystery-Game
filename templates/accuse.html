@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        提出指控｜CASE 001
+    </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+</head>
+
+
+<body>
+{% include "_quicknav.html" %}
+
+
+    <header>
+
+        <h1>⚖️ 提出指控</h1>
+
+        <p>
+            CASE 001｜消失的緋紅之心
+        </p>
+
+    </header>
+
+
+    <hr>
+
+
+    <main>
+
+
+        <!-- ==================================================
+        #調查進度
+        #================================================== -->
+
+        <section>
+
+            <h2>📊 調查進度</h2>
+
+            <p>
+                已取得證據：
+                <strong>
+                {{ evidence_count }} / {{ evidence | length }}
+            </strong>
+            </p>
+
+            <p>
+                已解鎖偵探筆記：
+                <strong>
+                {{ note_count }} / {{ total_notes }}
+            </strong>
+            </p>
+
+        </section>
+
+
+        <hr>
+
+
+        <!-- ==================================================
+        #尚未解鎖
+        #================================================== -->
+
+        {% if not accusation_unlocked %}
+
+
+        <section>
+
+            <h2>
+                🔒 尚未取得提出指控的資格
+            </h2>
+
+            <p>
+                目前掌握的案件資訊仍然不足。
+            </p>
+
+            <p>
+                要提出正式指控，你至少需要：
+            </p>
+
+
+            <p>
+
+                {% if evidence_count >= required_evidence_count %} ✅ {% else %} ❌ {% endif %} 找到至少
+                <strong>
+                    {{ required_evidence_count }}
+                </strong> 項證據
+
+            </p>
+
+
+            <p>
+
+                {% if board_count >= required_board_count %}✅{% else %}❌{% endif %} 推理板至少建立 {{ required_board_count }} 組有效關聯（目前 {{ board_count }} 組）<br>
+                <br>{% if key_link_complete %}✅{% else %}❌{% endif %} 完成一項關鍵推論（監控時間或辦公室與備用鑰匙）<br>
+                📝 偵探筆記會自動整理調查發現，不需另外解鎖才能指控
+
+            </p>
+
+
+        </section>
+
+
+        <hr>
+
+
+        <section>
+
+            <a href="/investigate">
+
+                <button>
+                    🔎 繼續調查現場
+                </button>
+
+            </a>
+
+
+            <a href="/suspects">
+
+                <button>
+                    👥 繼續訊問嫌疑人
+                </button>
+
+            </a>
+
+
+            <a href="/notes">
+
+                <button>
+                    📝 查看偵探筆記
+                </button>
+
+            </a>
+
+
+            <a href="/case">
+
+                <button>
+                    ← 返回案件
+                </button>
+
+            </a>
+
+        </section>
+
+
+        <!-- ==================================================
+        #已經解鎖
+        #================================================== -->
+
+        {% else %}
+
+
+        <section>
+
+            <h2>
+                🔓 已解鎖最終指控
+            </h2>
+
+            <p>
+                你已經掌握足夠的案件資訊。
+            </p>
+
+            <p>
+                請根據證據與證詞， 完成最後的推理。
+            </p>
+
+        </section>
+
+
+        <hr> {% if error %}
+
+        <p>
+            ⚠️ {{ error }}
+        </p>
+
+        <hr> {% endif %}
+
+
+        <form method="POST">
+
+
+            <!-- ==========================================
+                #第一題
+                #========================================== -->
+
+            <section>
+
+                <h2>
+                    ① 誰偷走了「緋紅之心」？
+                </h2>
+
+
+                {% for suspect_id, suspect in suspects.items() %}
+
+                <p>
+
+                    <label>
+
+                            <input
+                                type="radio"
+                                name="culprit"
+                                value="{{ suspect_id }}"
+                                required
+                            >
+
+                            {{ suspect.name }}
+                            ｜{{ suspect.role }}
+
+                        </label>
+
+                </p>
+
+                {% endfor %}
+
+            </section>
+
+
+            <hr>
+
+
+            <!-- ==========================================
+            #第二題
+            ========================================== -->
+
+            <section>
+
+                <h2>
+                    ② 犯人如何打開展示櫃？
+                </h2>
+
+
+                <p>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="method"
+                            value="break_glass"
+                            required
+                        >
+
+                        打破展示櫃玻璃
+
+                    </label>
+
+                </p>
+
+
+                <p>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="method"
+                            value="pick_lock"
+                        >
+
+                        使用工具破壞鎖頭
+
+                    </label>
+
+                </p>
+
+
+                <p>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="method"
+                            value="spare_key"
+                        >
+
+                        使用展示櫃的備用鑰匙
+
+                    </label>
+
+                </p>
+
+
+                <p>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="method"
+                            value="case_unlocked"
+                        >
+
+                        展示櫃原本沒有上鎖
+
+                    </label>
+
+                </p>
+
+            </section>
+
+
+            <hr>
+
+
+            <!-- ==========================================
+            #第三題
+            ========================================== -->
+
+            <section>
+
+                <h2>
+                    ③ 王志明為什麼謊稱自己一直在監控室？
+                </h2>
+
+
+                <p>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="wang_reason"
+                            value="culprit"
+                            required
+                        >
+
+                        因為他就是偷珠寶的人
+
+                    </label>
+
+                </p>
+
+
+                <p>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="wang_reason"
+                            value="smoking"
+                        >
+
+                        因為他擅自離開監控室去後門抽菸，
+                        怕受到處分
+
+                    </label>
+
+                </p>
+
+
+                <p>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="wang_reason"
+                            value="sleeping"
+                        >
+
+                        因為他在監控室睡著了
+
+                    </label>
+
+                </p>
+
+
+                <p>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="wang_reason"
+                            value="helping"
+                        >
+
+                        因為他偷偷協助犯人
+
+                    </label>
+
+                </p>
+
+            </section>
+
+
+            <hr>
+
+
+            <section>
+
+                <button type="submit">
+                    ⚖️ 確認提出指控
+                </button>
+
+            </section>
+
+
+        </form>
+
+
+        <hr>
+
+
+        <section>
+
+            <a href="/notes">
+
+                <button>
+                    📝 再查看偵探筆記
+                </button>
+
+            </a>
+
+        </section>
+
+
+        {% endif %}
+
+
+    </main>
+
+
+</body>
+
+</html>

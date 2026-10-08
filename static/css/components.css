@@ -1,0 +1,985 @@
+/* =========================================================
+   訊問室
+   ========================================================= */
+
+.chat-box {
+    background: #f5f7fa;
+    border: 1px solid #d9dfe7;
+    border-radius: 10px;
+    padding: 20px;
+    max-height: 520px;
+    overflow-y: auto;
+}
+
+/* 偵探 */
+
+.message-detective {
+    background: #e9f0f8;
+    border-left: 4px solid #58769a;
+    border-radius: 7px;
+    padding: 13px 16px;
+    margin: 12px 0;
+}
+
+/* 嫌疑人 */
+
+.message-suspect {
+    background: #f8e9ea;
+    border-left: 4px solid #b45d68;
+    border-radius: 7px;
+    padding: 13px 16px;
+    margin: 12px 0;
+}
+
+/* 證據 */
+
+.message-evidence {
+    background: #fff7df;
+    border: 1px solid #e4ca83;
+    border-radius: 7px;
+    padding: 13px 16px;
+    margin: 12px 0;
+}
+
+/* 解鎖 */
+
+.message-unlock {
+    background: #f7f1e4;
+    border: 1px solid #d5b46f;
+    border-radius: 8px;
+    padding: 17px;
+    margin: 15px 0;
+}
+
+/* =========================================================
+   最終指控
+   ========================================================= */
+
+.accusation-box {
+    background: linear-gradient(135deg, #fff8f8, #ffffff);
+    border: 2px solid #b45d68;
+}
+
+/* =========================================================
+   CASE CLOSED
+   ========================================================= */
+
+.case-closed {
+    text-align: center;
+    padding: 45px 20px;
+}
+
+.case-closed h1 {
+    font-size: 42px;
+    letter-spacing: 5px;
+}
+
+/* =========================================================
+   評級
+   ========================================================= */
+
+.rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #fff8e8;
+    border: 4px solid #c49754;
+    color: #34445c;
+    font-size: 48px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+/* =========================================================
+   調查地點
+   ========================================================= */
+
+.location-card {
+    position: relative;
+}
+
+.location-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    margin-bottom: 18px;
+    background: linear-gradient(135deg, #edf2f7, #dde5ee);
+    border-radius: 14px;
+    font-size: 34px;
+}
+
+.location-card h2 {
+    margin-bottom: 8px;
+}
+
+.location-card .status {
+    text-align: center;
+}
+
+/* =========================================================
+   現場搜索
+   ========================================================= */
+
+.search-card {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #edf2f7, #dde5ee);
+    border-radius: 14px;
+    font-size: 35px;
+}
+
+.unknown-icon {
+    background: #eef0f3;
+    color: #89919c;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.search-card h2 {
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.search-card p {
+    width: 100%;
+}
+
+.search-card a {
+    margin-top: auto;
+}
+
+.discovered-card {
+    border-left: 4px solid #5e9874;
+}
+
+.unknown-card {
+    border-left: 4px solid #aeb6c1;
+}
+
+/* =========================================================
+   證據資料庫
+   ========================================================= */
+
+.evidence-card {
+    min-height: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.evidence-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #edf2f7, #dde5ee);
+    border-radius: 14px;
+    font-size: 34px;
+}
+
+.evidence-card h2 {
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.evidence-card p {
+    width: 100%;
+}
+
+.evidence-card a {
+    margin-top: auto;
+}
+
+/* 尚未取得的證據 */
+
+.locked-evidence {
+    background: #f5f6f8;
+    border-left: 4px solid #b7bec7;
+}
+
+.locked-evidence h2 {
+    color: #7d8794;
+}
+
+.locked-evidence p {
+    color: #818995;
+}
+
+.locked-icon {
+    background: #e6e9ed;
+    color: #818995;
+}
+
+/* =========================================================
+   調查進度條
+   ========================================================= */
+
+.progress-container {
+    width: 100%;
+    height: 14px;
+    margin: 15px 0 18px;
+    background: #e3e7ec;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient( 90deg, #526b8a, #7e96b2);
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+/* =========================================================
+   證物詳細資料
+   ========================================================= */
+
+.evidence-report {
+    border-left: 5px solid #526b8a;
+}
+
+/* 證物標題區 */
+
+.evidence-report-header {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.evidence-large-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 95px;
+    height: 95px;
+    background: linear-gradient(135deg, #edf2f7, #dce5ef);
+    border-radius: 16px;
+    font-size: 46px;
+    box-shadow: 0 4px 12px rgba(48, 63, 83, 0.10);
+}
+
+.evidence-report-header h1 {
+    margin: 5px 0 10px;
+    color: #34445c;
+    font-size: 29px;
+}
+
+.evidence-label {
+    margin: 0;
+    color: #8a94a2;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: left;
+}
+
+/* =========================================================
+   證物資料列
+   ========================================================= */
+
+.evidence-info {
+    display: grid;
+    gap: 10px;
+}
+
+.evidence-info-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 20px;
+    padding: 12px 5px;
+    border-bottom: 1px solid #e5e8ec;
+}
+
+.evidence-info-row:last-child {
+    border-bottom: none;
+}
+
+.evidence-info-row span {
+    color: #586373;
+}
+
+/* =========================================================
+   證物描述
+   ========================================================= */
+
+.evidence-description {
+    padding: 20px;
+    background: #f7f8fa;
+    border-left: 4px solid #b45d68;
+    border-radius: 7px;
+    font-size: 16px;
+    line-height: 2;
+}
+
+/* =========================================================
+   推理問題
+   ========================================================= */
+
+.analysis-question {
+    margin-top: 20px;
+    padding: 18px 20px;
+    background: #fff7df;
+    border: 1px solid #e3cc8e;
+    border-radius: 8px;
+}
+
+.analysis-question p {
+    margin-bottom: 0;
+}
+
+/* =========================================================
+   下一步行動
+   ========================================================= */
+
+.next-action-grid {
+    display: grid;
+    grid-template-columns: repeat( 3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.next-action-card {
+    display: block;
+    padding: 20px;
+    background: #f7f9fb;
+    border: 1px solid #d9dfe7;
+    border-radius: 10px;
+    color: #34445c;
+    transition: 0.2s ease;
+}
+
+.next-action-card:hover {
+    transform: translateY(-3px);
+    border-color: #879bb3;
+    box-shadow: 0 7px 16px rgba(48, 63, 83, 0.10);
+}
+
+.next-action-card strong {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 17px;
+}
+
+.next-action-card p {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.next-action-icon {
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+/* =========================================================
+   AI 訊問室
+   ========================================================= */
+
+.interrogation-profile {
+    border-left: 5px solid #526b8a;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.interrogation-avatar {
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.profile-info h1 {
+    margin: 3px 0 5px;
+    font-size: 28px;
+}
+
+.profile-info p {
+    margin: 2px 0;
+}
+
+/* =========================================================
+   嫌疑人目前狀態
+   ========================================================= */
+
+.suspect-state-box {
+    margin-top: 20px;
+    padding: 16px 18px;
+    background: #f5f7fa;
+    border: 1px solid #dce2e9;
+    border-radius: 8px;
+}
+
+.suspect-state-box>span {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 3px 9px;
+    background: #e5eaf0;
+    border-radius: 15px;
+    color: #667487;
+    font-size: 12px;
+}
+
+.suspect-state-box>strong {
+    color: #b45d68;
+}
+
+.suspect-state-box p {
+    margin-bottom: 0;
+}
+
+/* =========================================================
+   初步證詞
+   ========================================================= */
+
+.initial-statement {
+    padding: 18px 20px;
+    background: #f7f8fa;
+    border-left: 4px solid #b45d68;
+    border-radius: 7px;
+}
+
+.initial-statement p {
+    margin-bottom: 0;
+    font-size: 16px;
+}
+
+/* =========================================================
+   訊問紀錄
+   ========================================================= */
+
+.chat-box {
+    margin-top: 20px;
+    padding: 22px;
+    min-height: 250px;
+    max-height: 600px;
+    overflow-y: auto;
+    background: #f5f7fa;
+    border: 1px solid #d9dfe7;
+    border-radius: 12px;
+}
+
+.chat-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.chat-name {
+    margin-bottom: 5px;
+    color: #687587;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* 玩家靠右 */
+
+.detective-row {
+    align-items: flex-end;
+}
+
+.detective-row .chat-name {
+    text-align: right;
+}
+
+.message-detective {
+    max-width: 75%;
+    padding: 13px 17px;
+    background: #dfeaf6;
+    border: none;
+    border-radius: 15px 15px 3px 15px;
+    color: #34445c;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* 嫌疑人靠左 */
+
+.suspect-row {
+    align-items: flex-start;
+}
+
+.message-suspect {
+    max-width: 75%;
+    padding: 13px 17px;
+    background: #f4e5e7;
+    border: none;
+    border-radius: 15px 15px 15px 3px;
+    color: #4d4650;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* =========================================================
+   出示證據訊息
+   ========================================================= */
+
+.message-evidence {
+    width: 90%;
+    margin: 18px auto;
+    padding: 15px 18px;
+    background: #fff7df;
+    border: 1px solid #e3ca83;
+    border-radius: 8px;
+    color: #6c5b31;
+}
+
+.message-evidence p {
+    margin-bottom: 0;
+}
+
+/* =========================================================
+   關鍵證詞解鎖
+   ========================================================= */
+
+.message-unlock {
+    width: 90%;
+    margin: 18px auto;
+    padding: 17px 20px;
+    background: #eef5ef;
+    border: 1px solid #a8c9b2;
+    border-radius: 8px;
+    color: #42654c;
+}
+
+.message-unlock p {
+    margin-bottom: 0;
+}
+
+/* =========================================================
+   尚無聊天
+   ========================================================= */
+
+.empty-chat {
+    padding: 45px 20px;
+    text-align: center;
+}
+
+.empty-chat-icon {
+    margin-bottom: 10px;
+    font-size: 40px;
+}
+
+.empty-chat h3,
+.empty-chat p {
+    text-align: center;
+}
+
+/* =========================================================
+   問題輸入區
+   ========================================================= */
+
+.question-section {
+    border-left: 5px solid #526b8a;
+}
+
+.question-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.question-form input[type="text"] {
+    flex: 1;
+    width: auto;
+}
+
+.question-form button {
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.question-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 14px;
+}
+
+.question-examples span {
+    padding: 5px 10px;
+    background: #edf1f6;
+    border-radius: 20px;
+    color: #667487;
+    font-size: 12px;
+}
+
+.question-examples span:first-child {
+    background: transparent;
+    padding-left: 0;
+    font-weight: bold;
+}
+
+/* =========================================================
+   出示證據表單
+   ========================================================= */
+
+.evidence-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.evidence-form select {
+    flex: 1;
+}
+
+.evidence-form button {
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.no-evidence-box {
+    margin-top: 18px;
+    padding: 20px;
+    background: #f5f6f8;
+    border: 1px solid #dce1e7;
+    border-radius: 8px;
+}
+
+/* =========================================================
+   特殊證詞
+   ========================================================= */
+
+.special-testimony {
+    border-left: 5px solid #c49754;
+}
+
+.testimony-box {
+    margin-top: 15px;
+    padding: 18px;
+    background: #fff9e9;
+    border: 1px solid #e1ce99;
+    border-radius: 8px;
+}
+
+/* =========================================================
+   已出示證據
+   ========================================================= */
+
+.presented-evidence-list {
+    display: grid;
+    gap: 10px;
+}
+
+.presented-evidence-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    background: #f7f9fb;
+    border: 1px solid #dce2e9;
+    border-radius: 8px;
+}
+
+.presented-evidence-item strong {
+    flex: 1;
+}
+
+/* =========================================================
+   API 錯誤
+   ========================================================= */
+
+.error-message {
+    margin-top: 15px;
+    padding: 14px 17px;
+    background: #fbe6e8;
+    border: 1px solid #e1aeb4;
+    border-radius: 7px;
+    color: #994a54;
+}
+
+/* =========================================================
+   偵探筆記 / 推理板
+   ========================================================= */
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.note-card {
+    min-height: 230px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.note-card:hover {
+    transform: translateY(-2px);
+}
+
+.note-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.note-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    font-size: 21px;
+}
+
+/* =========================================================
+   已解鎖推論
+   ========================================================= */
+
+.unlocked-note {
+    background: linear-gradient(135deg, #fffdf7, #f8f4e9);
+    border: 1px solid #dfcfaa;
+    border-left: 5px solid #c49754;
+    box-shadow: 0 5px 15px rgba(75, 65, 45, 0.07);
+}
+
+.unlocked-note h3 {
+    margin: 3px 0 10px;
+    color: #4b5667;
+    font-size: 19px;
+}
+
+.note-footer {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #e7ddc5;
+    color: #74806e;
+    font-size: 12px;
+}
+
+/* =========================================================
+   未解鎖推論
+   ========================================================= */
+
+.locked-note {
+    background: #f4f5f7;
+    border: 1px dashed #c8ced6;
+    color: #858d98;
+}
+
+.locked-note h3 {
+    color: #89919c;
+    letter-spacing: 4px;
+}
+
+.locked-note p {
+    color: #858d98;
+}
+
+.note-hint {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #dde1e6;
+    color: #818b97;
+    font-size: 12px;
+}
+
+/* =========================================================
+   推理方向
+   ========================================================= */
+
+.reasoning-grid {
+    display: grid;
+    grid-template-columns: repeat( 2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.reasoning-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 18px;
+    background: #f7f9fb;
+    border: 1px solid #dce2e9;
+    border-radius: 9px;
+}
+
+.reasoning-item>span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    background: #526b8a;
+    border-radius: 50%;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.reasoning-item strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.reasoning-item p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* =========================================================
+   手機
+   ========================================================= */
+
+@media (max-width: 700px) {
+    header h1 {
+        font-size: 25px;
+    }
+    main {
+        width: 94%;
+    }
+    section {
+        padding: 19px;
+    }
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+    select,
+    input[type="text"] {
+        width: 100%;
+        min-width: 0;
+        margin-bottom: 8px;
+    }
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+    .evidence-report-header {
+        align-items: flex-start;
+    }
+    .evidence-large-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 34px;
+    }
+    .evidence-report-header h1 {
+        font-size: 23px;
+    }
+    .evidence-info-row {
+        grid-template-columns: 1fr;
+        gap: 3px;
+    }
+    .next-action-grid {
+        grid-template-columns: 1fr;
+    }
+    .profile-header {
+        align-items: flex-start;
+    }
+    .message-detective,
+    .message-suspect {
+        max-width: 90%;
+    }
+    .question-form {
+        flex-direction: column;
+    }
+    .question-form button {
+        width: 100%;
+    }
+    .evidence-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .evidence-form select {
+        width: 100%;
+    }
+    .evidence-form button {
+        width: 100%;
+    }
+    .presented-evidence-item {
+        flex-wrap: wrap;
+    }
+    .reasoning-grid {
+        grid-template-columns: 1fr;
+    }
+    .notes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   嫌疑人檔案
+   ========================================================= */
+
+.suspect-card {
+    position: relative;
+    text-align: center;
+}
+
+.suspect-number {
+    margin: 0 0 15px;
+    color: #8993a1;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.suspect-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 85px;
+    height: 85px;
+    margin: 5px auto 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e5ebf2, #d5dee9);
+    border: 3px solid #ffffff;
+    box-shadow: 0 3px 12px rgba(48, 63, 83, 0.15);
+    font-size: 42px;
+}
+
+.suspect-card h2 {
+    margin-bottom: 3px;
+}
+
+.suspect-role {
+    display: inline-block;
+    margin-top: 3px;
+    padding: 4px 12px;
+    background: #edf1f6;
+    border-radius: 20px;
+    color: #526b8a;
+    font-size: 14px;
+}
+
+.statement {
+    min-height: 78px;
+    padding: 14px;
+    background: #f6f7f9;
+    border-left: 3px solid #b45d68;
+    border-radius: 6px;
+    text-align: left;
+    color: #515c6c;
+}
+

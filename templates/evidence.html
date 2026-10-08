@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        證據資料庫｜CASE 001
+    </title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+</head>
+
+
+<body>
+{% include "_quicknav.html" %}
+
+
+    <header>
+
+        <p class="case-number">
+            EVIDENCE DATABASE
+        </p>
+
+        <h1>
+            📂 證據資料庫
+        </h1>
+
+        <p>
+            CASE 001｜消失的緋紅之心
+        </p>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- ==================================================
+         證據庫說明
+         ================================================== -->
+
+        <section>
+
+            <h2>
+                🗃️ 案件證物庫
+            </h2>
+
+            <p>
+                這裡會保存你在調查過程中取得的所有證據。 仔細比較證據與嫌疑人的證詞， 可能會發現關鍵的時間矛盾或不合理之處。
+            </p>
+
+            <blockquote>
+                不要只問「這項證據代表什麼」， 也要思考「它推翻了誰的說法」。
+            </blockquote>
+
+        </section>
+
+
+        <!-- ==================================================
+         證據進度
+         ================================================== -->
+
+        <section>
+
+            <h2>
+                📊 證據收集進度
+            </h2>
+
+
+            <p>
+                已取得：
+                <strong>
+                {{ discovered | length }}
+                /
+                {{ evidence | length }}
+            </strong>
+            </p>
+
+
+            <div class="progress-container">
+
+                <div class="progress-bar" style="width: {{ (((discovered | length) / (evidence | length)) * 100) | round if (evidence | length) > 0 else 0 }}%;">
+                </div>
+
+            </div>
+
+
+            {% if discovered | length == 0 %}
+
+            <p class="status">
+                🔎 尚未取得任何證據
+            </p>
+
+            {% elif discovered | length
+            < evidence | length %} <p class="status status-warning">
+                📂 證據仍未收集完整
+                </p>
+
+                {% else %}
+
+                <p class="status status-success">
+                    ✅ 所有現場證據已取得
+                </p>
+
+                {% endif %}
+
+        </section>
+
+
+        <!-- ==================================================
+         證據列表
+         ================================================== -->
+
+        <section>
+
+            <h2>
+                🔍 證物列表
+            </h2>
+
+
+            <div class="card-grid">
+
+
+                {% for evidence_id, item in evidence.items() %}
+
+
+                <!-- =========================================
+                     已取得
+                     ========================================= -->
+
+                {% if evidence_id in discovered %}
+
+
+                <div class="card evidence-card discovered-card">
+
+
+                    <div class="evidence-icon">
+
+                        {{ item.icon }}
+
+                    </div>
+
+
+                    <p class="status status-success">
+
+                        ✓ 已取得
+
+                    </p>
+
+
+                    <h2>
+
+                        {{ item.name }}
+
+                    </h2>
+
+
+                    <p>
+
+                        <strong>
+                                發現地點：
+                            </strong> {{ item.location }}
+
+                    </p>
+
+
+                    <p>
+
+                        {{ item.description }}
+
+                    </p>
+
+
+                    <a href="/evidence/{{ evidence_id }}">
+
+                        <button>
+                                📄 查看詳細資料
+                            </button>
+
+                    </a>
+
+
+                </div>
+
+
+                <!-- =========================================
+                     尚未取得
+                     ========================================= -->
+
+                {% else %}
+
+
+                <div class="card evidence-card locked-evidence">
+
+
+                    <div class="evidence-icon locked-icon">
+
+                        🔒
+
+                    </div>
+
+
+                    <p class="status">
+
+                        尚未發現
+
+                    </p>
+
+
+                    <h2>
+
+                        未知證據
+
+                    </h2>
+
+
+                    <p>
+
+                        這項證據尚未被發現。 前往案件現場進行搜索， 也許能找到新的線索。
+
+                    </p>
+
+
+                    <a href="/investigate">
+
+                        <button>
+                                🔎 前往調查
+                            </button>
+
+                    </a>
+
+
+                </div>
+
+
+                {% endif %} {% endfor %}
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+         推理提醒
+         ================================================== -->
+
+        <section>
+
+            <h2>
+                🧠 證據分析
+            </h2>
+
+            <p>
+                某些證據本身可能無法直接指出犯人， 但當它與嫌疑人的證詞放在一起比較時， 就可能暴露出新的矛盾。
+            </p>
+
+            <p>
+                如果發現某人的證詞與證據不一致， 可以前往訊問室，將證據直接出示給對方。
+            </p>
+
+        </section>
+
+
+
+    </main>
+
+
+</body>
+
+</html>

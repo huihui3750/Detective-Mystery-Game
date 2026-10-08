@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        偵探筆記｜CASE 001
+    </title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+</head>
+
+
+<body>
+{% include "_quicknav.html" %}
+
+
+    <header>
+
+        <p class="case-number">
+            DETECTIVE NOTES
+        </p>
+
+        <h1>
+            📝 偵探筆記
+        </h1>
+
+        <p>
+            CASE 001｜消失的緋紅之心
+        </p>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- ==================================================
+        #說明
+        #================================================== -->
+
+        <section>
+
+            <h2>
+                📖 自動調查紀錄
+            </h2>
+
+            <p>
+                偵探筆記會根據目前取得的證據與關鍵證詞， 自動整理案件中值得注意的矛盾與推論。
+            </p>
+
+            <p>
+                尚未取得足夠資訊的內容會保持鎖定， 隨著調查進行，新的推論將逐漸解鎖。
+            </p>
+
+            <blockquote>
+                真相往往不是藏在單一證據裡， 而是藏在不同證詞與證據之間的矛盾。
+            </blockquote>
+
+        </section>
+
+
+        <!-- ==================================================
+        #推理進度
+        #================================================== -->
+
+        <section>
+
+            <h2>
+                📊 自動筆記整理進度
+            </h2>
+
+
+            <p>
+                已解鎖調查筆記：
+                <strong>
+                {{ unlocked_notes | length }}
+                /
+                {{ notes | length }}
+            </strong>
+            </p>
+
+
+            <div class="progress-container">
+
+                <div class="progress-bar" style="width: {{ ((unlocked_notes | length) / (notes | length) * 100) | round }}%;">
+                </div>
+
+            </div>
+
+
+            {% if unlocked_notes | length == 0 %}
+
+            <p class="status">
+                🔎 尚無可整理的調查發現
+            </p>
+
+            {% elif unlocked_notes | length
+            < notes | length %} <p class="status status-warning">
+                🧩 還有尚未解鎖的調查紀錄
+                </p>
+
+                {% else %}
+
+                <p class="status status-success">
+                    ✅ 目前可解鎖的筆記已整理完成
+                </p>
+
+                {% endif %}
+
+        </section>
+
+
+        <section class="notes-board-summary">
+            <h2>🧩 已建立的推理關聯</h2>
+            <p>以下內容由互動式推理板自動同步，不需要在筆記頁再次操作。</p>
+            {% if board_results %}
+                {% for result in board_results %}
+                <article class="note-card unlocked-note" style="margin-bottom: 12px;">
+                    <h3>{{ result.title }}</h3>
+                    <p>{{ result.explanation }}</p>
+                    <small>{{ result.confidence }}</small>
+                </article>
+                {% endfor %}
+            {% else %}
+                <p class="status">尚未建立推理關聯。前往推理板，嘗試連結已取得的線索。</p>
+            {% endif %}
+            <a href="{{ url_for('deduction_board') }}">前往互動式推理板 →</a>
+        </section>
+
+        <!-- ==================================================
+         推理板
+         ================================================== -->
+
+        <section>
+
+            <h2>
+                📋 已整理的調查發現
+            </h2>
+
+            <p>
+                以下內容會隨著調查自動記錄；若要主動組合線索，請使用互動式推理板。
+            </p>
+
+
+            <div class="notes-grid">
+
+
+                {% for note_id, note in notes.items() %}
+
+
+                <!-- =========================================
+                    #已解鎖
+                    #========================================= -->
+
+                {% if note in unlocked_notes %}
+
+
+                <div class="note-card unlocked-note">
+
+
+                    <div class="note-top">
+
+                        <div class="note-icon">
+                            🔓
+                        </div>
+
+                        <span class="status status-success">
+                                已解鎖
+                            </span>
+
+                    </div>
+                    <h3>
+                        {{ note.title }}
+                    </h3>
+
+                    {% if note.type %}
+                    <p>
+                        <strong>類型：</strong> {{ note.type }}
+                    </p>
+                    {% endif %} {% if note.initial_statement %}
+                    <p>
+                        <strong>原始證詞：</strong> {{ note.initial_statement }}
+                    </p>
+                    {% endif %} {% if note.evidence %}
+                    <p>
+                        <strong>相關證據：</strong> {{ note.evidence }}
+                    </p>
+                    {% endif %} {% if note.new_information %}
+                    <p>
+                        <strong>新發現：</strong> {{ note.new_information }}
+                    </p>
+                    {% endif %} {% if note.conclusion %}
+                    <p>
+                        <strong>推論：</strong> {{ note.conclusion }}
+                    </p>
+                    {% endif %}
+
+
+                    <div class="note-footer">
+
+                        ✓ 已記錄至偵探筆記
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =========================================
+                    #尚未解鎖
+                    #========================================= -->
+
+                {% else %}
+
+
+                <div class="note-card locked-note">
+
+
+                    <div class="note-top">
+
+                        <div class="note-icon">
+                            🔒
+                        </div>
+
+                        <span class="status">
+                                尚未解鎖
+                            </span>
+
+                    </div>
+
+
+                    <h3>
+                        ???
+                    </h3>
+
+
+                    <p>
+                        目前掌握的資訊不足， 尚無法得出這項推論。
+                    </p>
+
+
+                    <div class="note-hint">
+
+                        🔎 繼續搜索證據或訊問嫌疑人
+
+                    </div>
+
+
+                </div>
+
+
+                {% endif %} {% endfor %}
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+        #推理方式
+        #================================================== -->
+
+        <section>
+
+            <h2>
+                🔎 推理方向
+            </h2>
+
+
+            <div class="reasoning-grid">
+
+
+                <div class="reasoning-item">
+
+                    <span>
+                    01
+                </span>
+
+                    <div>
+
+                        <strong>
+                        比對時間
+                    </strong>
+
+                        <p>
+                            確認嫌疑人的說法， 是否與案發時間和監視紀錄一致。
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reasoning-item">
+
+                    <span>
+                    02
+                </span>
+
+                    <div>
+
+                        <strong>
+                        比對證詞
+                    </strong>
+
+                        <p>
+                            找出嫌疑人前後說法中 不一致或刻意隱瞞的部分。
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reasoning-item">
+
+                    <span>
+                    03
+                </span>
+
+                    <div>
+
+                        <strong>
+                        比對證據
+                    </strong>
+
+                        <p>
+                            思考現場證據是否能支持， 或直接推翻某人的說法。
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reasoning-item">
+
+                    <span>
+                    04
+                </span>
+
+                    <div>
+
+                        <strong>
+                        區分秘密與犯罪
+                    </strong>
+
+                        <p>
+                            說謊可能只是為了隱瞞秘密， 不代表說謊者就是犯人。
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+        #最終推理
+        #================================================== -->
+
+        <section class="accusation-box">
+
+            <h2>
+                🧩 接下來可以做什麼？
+            </h2>
+
+            <p>
+                偵探筆記只負責回顧調查成果；是否能正式指控，仍由已取得的證據與推理板有效關聯決定。
+            </p>
+
+            <p>
+                若還有疑點，先回到推理板建立關聯；完成必要條件後，再到調查總部確認是否能正式指控。
+            </p>
+
+
+            <a href="{{ url_for('deduction_board') }}">
+
+                <button>
+                🧩 前往推理板
+            </button>
+
+            </a>
+
+        </section>
+
+
+
+    </main>
+
+
+</body>
+
+</html>

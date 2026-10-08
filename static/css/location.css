@@ -1,0 +1,393 @@
+/* =========================================================
+   LOCATION INVESTIGATION
+========================================================= */
+
+.location-body {
+    margin: 0;
+    background: #f4f1ea;
+    color: #354255;
+}
+
+.location-container {
+    width: min(1080px, calc(100% - 40px));
+    margin: 40px auto 70px;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.location-header {
+    padding: 32px 38px 36px;
+    background: #fdfcf9;
+    border-top: 5px solid #35465c;
+    border-bottom: 1px solid #d3cec4;
+}
+
+.location-header-top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd8ce;
+    color: #9a8156;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.location-title-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+    padding-top: 27px;
+}
+
+.location-label {
+    margin: 0 0 5px;
+    color: #a6575d;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-align: left;
+}
+
+.location-title-area h1 {
+    margin: 0;
+    color: #29394e;
+    font-size: 2.6rem;
+}
+
+.location-description {
+    max-width: 650px;
+    margin: 12px 0 0;
+    color: #6b737d;
+}
+
+.location-back {
+    flex-shrink: 0;
+    padding: 10px 14px;
+    border: 1px solid #b7b2aa;
+    color: #5c6672;
+    font-size: 0.82rem;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.location-back:hover {
+    border-color: #35465c;
+    color: #35465c;
+}
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.location-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.location-section-heading>span {
+    color: #b2935e;
+    font-family: Georgia, serif;
+    font-size: 1.7rem;
+}
+
+.location-section-heading small {
+    color: #9a8156;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+}
+
+.location-section-heading h2 {
+    margin: 2px 0 0;
+    color: #354255;
+    font-size: 1.15rem;
+}
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.location-progress {
+    padding: 32px 38px;
+    background: #f7f4ed;
+    border-bottom: 1px solid #d5d0c6;
+}
+
+.location-progress-content {
+    display: grid;
+    grid-template-columns: 130px 1fr auto;
+    align-items: center;
+    gap: 28px;
+    margin-top: 25px;
+}
+
+.location-progress-number strong {
+    color: #35465c;
+    font-size: 2rem;
+}
+
+.location-progress-number span {
+    color: #9298a0;
+}
+
+.location-progress-number p {
+    margin: 2px 0 0;
+    color: #7c838b;
+    font-size: 0.78rem;
+}
+
+.location-progress-track {
+    height: 5px;
+    overflow: hidden;
+    background: #ddd9d0;
+}
+
+.location-progress-bar {
+    height: 100%;
+    background: #a6575d;
+}
+
+.location-progress-text {
+    color: #6f7780;
+    font-size: 0.8rem;
+}
+
+/* =========================================================
+   SEARCH AREA
+========================================================= */
+
+.location-search {
+    padding: 38px;
+    background: #fdfcf9;
+}
+
+.location-search-intro {
+    margin: 18px 0 27px;
+    color: #777f88;
+}
+
+.location-evidence-list {
+    border-top: 1px solid #d7d2c8;
+}
+
+/* =========================================================
+   EVIDENCE ITEM
+========================================================= */
+
+.location-evidence-item {
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    padding: 28px 0;
+    border-bottom: 1px solid #d7d2c8;
+    transition: 0.2s ease;
+}
+
+.location-evidence-item:hover {
+    padding-left: 8px;
+}
+
+.location-item-number {
+    color: #b2935e;
+    font-family: Georgia, serif;
+    font-size: 1.55rem;
+}
+
+.location-item-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.location-item-heading small {
+    color: #a0a4a8;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+}
+
+.location-item-heading h3 {
+    margin: 4px 0 0;
+    color: #314056;
+    font-size: 1.25rem;
+}
+
+.location-item-main>p {
+    margin: 14px 0 20px;
+    color: #6e7680;
+}
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.location-item-status {
+    height: fit-content;
+    padding: 5px 9px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.location-item-status.found {
+    background: #e4ece5;
+    color: #59705c;
+}
+
+.location-item-status.unknown {
+    background: #ececef;
+    color: #777d85;
+}
+
+/* =========================================================
+   ITEM BOTTOM
+========================================================= */
+
+.location-item-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #d9d4cb;
+}
+
+.location-item-bottom>span {
+    color: #92979d;
+    font-size: 0.72rem;
+}
+
+/* =========================================================
+   ACTION
+========================================================= */
+
+.location-action {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 9px 14px;
+    background: #35465c;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.location-action:hover {
+    background: #27384d;
+    transform: translateX(3px);
+}
+
+.location-action.secondary {
+    background: transparent;
+    border: 1px solid #8d98a5;
+    color: #536274;
+}
+
+.location-action.secondary:hover {
+    background: #35465c;
+    color: #ffffff;
+}
+
+/* =========================================================
+   NOTE
+========================================================= */
+
+.location-note {
+    padding: 30px 38px;
+    background: #eee9df;
+    border-left: 4px solid #b2935e;
+}
+
+.location-note>span {
+    color: #a6575d;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.location-note h3 {
+    margin: 6px 0 9px;
+    color: #354255;
+}
+
+.location-note p {
+    margin: 0;
+    color: #686f77;
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.location-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    padding: 19px 8px;
+}
+
+.location-navigation div {
+    display: flex;
+    gap: 22px;
+}
+
+.location-navigation a {
+    color: #606d7d;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.location-navigation a:hover {
+    color: #a6575d;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 720px) {
+    .location-container {
+        width: calc(100% - 24px);
+        margin-top: 18px;
+    }
+    .location-header,
+    .location-progress,
+    .location-search,
+    .location-note {
+        padding: 25px 22px;
+    }
+    .location-title-area {
+        display: block;
+    }
+    .location-back {
+        display: inline-block;
+        margin-top: 20px;
+    }
+    .location-progress-content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .location-evidence-item {
+        grid-template-columns: 45px 1fr;
+    }
+    .location-item-heading {
+        flex-direction: column;
+    }
+    .location-item-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .location-navigation {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .location-navigation div {
+        flex-wrap: wrap;
+    }
+}

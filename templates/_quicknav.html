@@ -1,0 +1,4 @@
+<nav class="case-quicknav" aria-label="案件快速導覽">
+ <a href="{{ url_for('dashboard') }}" {% if request.endpoint == 'dashboard' %}aria-current="page"{% endif %}>⌂ 調查總部</a><a href="{{ url_for('investigate') }}" {% if request.endpoint == 'investigate' %}aria-current="page"{% endif %}>⌕ 現場調查</a><a href="{{ url_for('suspect_list') }}" {% if request.endpoint == 'suspect_list' %}aria-current="page"{% endif %}>♙ 嫌疑人</a><a href="{{ url_for('evidence') }}" {% if request.endpoint == 'evidence' %}aria-current="page"{% endif %}>▣ 證物庫</a><a href="{{ url_for('deduction_board') }}" {% if request.endpoint == 'deduction_board' %}aria-current="page"{% endif %}>◇ 推理板</a><a href="{{ url_for('case_timeline') }}" {% if request.endpoint == 'case_timeline' %}aria-current="page"{% endif %}>◷ 時間線</a>
+ <a href="{{ url_for('detective_notes') }}" {% if request.endpoint == 'detective_notes' %}aria-current="page"{% endif %}>✎ 偵探筆記</a>
+</nav>

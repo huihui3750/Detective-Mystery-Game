@@ -1,0 +1,172 @@
+/* 訊問室獨立樣式：只作用於 .interrogate-page */
+.interrogate-page{background:#eae8e2;color:#303c4a}
+.interrogate-page .ir-topbar{padding:0;background:#303f53;box-shadow:none}
+.interrogate-page .ir-top-inner{max-width:1320px;margin:auto;padding:17px 26px;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.interrogate-page .ir-topbar a{color:#e7e8e7;font-size:13px}
+.interrogate-page .ir-brand{display:flex;flex-direction:column;align-items:center;gap:2px}
+.interrogate-page .ir-brand span{font-size:10px;color:#c5b394;letter-spacing:2px}
+.interrogate-page .ir-brand strong{font-size:20px;color:white;letter-spacing:4px}
+.interrogate-page .ir-layout{max-width:1320px;width:calc(100% - 48px);margin:32px auto 70px;display:grid;grid-template-columns:minmax(270px,330px) minmax(0,1fr);align-items:start;gap:22px}
+.interrogate-page .ir-sidebar,.interrogate-page .ir-main-panel{min-width:0;display:flex;flex-direction:column;gap:18px}
+.interrogate-page section{margin:0;padding:25px;border:1px solid #d6d0c5;border-radius:4px;background:#fffdf9;box-shadow:0 5px 18px rgba(40,45,50,.045)}
+.interrogate-page .ir-dossier{border-top:5px solid #a2575d}
+.interrogate-page .ir-dossier-top{display:flex;justify-content:space-between;color:#99866a;font-size:10px;font-weight:700;letter-spacing:1.5px}
+.interrogate-page .ir-overline{font-size:10px;font-weight:700;letter-spacing:2px;color:#a17f55;text-align:left;margin:0 0 6px}
+.interrogate-page .ir-dossier h1{font-size:30px;margin:0 0 15px;letter-spacing:2px}
+.interrogate-page .ir-meta{display:flex;justify-content:space-between;gap:10px;border-top:1px solid #e9e4db;padding:9px 0;font-size:13px}
+.interrogate-page .ir-meta span{color:#87909b}
+.interrogate-page .ir-description{font-size:13px;line-height:1.9;margin:13px 0}
+.interrogate-page .ir-state{background:#f2f0ea;border-left:3px solid #a2575d;padding:14px}
+.interrogate-page .ir-state-label{display:block;font-size:11px;color:#777f88}
+.interrogate-page .ir-state strong{display:block;color:#a2575d;font-size:18px;margin:3px 0}
+.interrogate-page .ir-state p{margin:0;font-size:12px}
+.interrogate-page .ir-statement h2,.interrogate-page .ir-special h2{font-size:18px;margin:0 0 12px}
+.interrogate-page .ir-statement blockquote{background:#f6f3ed;border-left:3px solid #b69c70;margin:0;padding:15px;font-size:14px;line-height:1.9}
+.interrogate-page .ir-special p{font-size:13px}
+.interrogate-page .ir-success{color:#35745a;font-weight:700}
+.interrogate-page .ir-warning{color:#9b6436;font-weight:700}
+.interrogate-page .ir-action{margin:8px 0 0;width:100%;font-size:13px}
+.interrogate-page .ir-conversation{padding:0;overflow:hidden}
+.interrogate-page .ir-panel-heading{padding:24px 27px 12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.interrogate-page .ir-panel-heading h2{margin:0;font-size:25px}
+.interrogate-page .ir-live{font-size:11px;color:#68766b;white-space:nowrap}
+.interrogate-page .ir-live i{display:inline-block;width:7px;height:7px;background:#64836a;border-radius:50%;margin-right:4px}
+.interrogate-page .ir-hint{margin:0;padding:0 27px 16px;font-size:13px;color:#75808b}
+.interrogate-page .ir-chat{background:#f5f2eb;min-height:340px;max-height:540px;overflow-y:auto;padding:24px 27px;border-top:1px solid #e1ddd5;border-bottom:1px solid #e1ddd5}
+.interrogate-page .ir-chat-entry{display:flex;flex-direction:column;margin-bottom:21px;gap:6px}
+.interrogate-page .ir-player{align-items:flex-end}
+.interrogate-page .ir-suspect{align-items:flex-start}
+.interrogate-page .ir-speaker{font-size:10px;letter-spacing:1px;color:#7e8790;font-weight:700}
+.interrogate-page .ir-bubble{max-width:82%;padding:13px 17px;border-radius:8px;font-size:14px;line-height:1.85;white-space:pre-wrap;overflow-wrap:anywhere}
+.interrogate-page .ir-player .ir-bubble{background:#dce5ed;border:1px solid #c9d7e4;color:#30475d;border-bottom-right-radius:2px}
+.interrogate-page .ir-suspect .ir-bubble{background:#fffdf9;border:1px solid #ded5cb;border-left:3px solid #a2575d;border-bottom-left-radius:2px}
+.interrogate-page .ir-event{max-width:92%;margin:19px auto;padding:15px 19px;border:1px solid #d6bf8e;background:#fbf4e5;font-size:13px}
+.interrogate-page .ir-event strong{color:#876739}
+.interrogate-page .ir-event p{margin:5px 0 0;font-size:13px}
+.interrogate-page .ir-unlock{background:#edf5ed;border-color:#afc8b1}
+.interrogate-page .ir-unlock strong{color:#41714d}
+.interrogate-page .ir-empty{text-align:center;padding:80px 20px}
+.interrogate-page .ir-empty span{font:80px Georgia,serif;color:#c3b5a1;line-height:.5}
+.interrogate-page .ir-empty h3{font-size:20px;margin:18px 0 6px}
+.interrogate-page .ir-empty p{text-align:center;font-size:13px}
+.interrogate-page .ir-error{padding:13px 22px;color:#9b3d4b;background:#fff0f0;font-size:13px}
+.interrogate-page .ir-section-label{display:flex;align-items:center;gap:12px;margin-bottom:15px}
+.interrogate-page .ir-section-label span{font:20px Georgia,serif;color:#b39b72}
+.interrogate-page .ir-section-label h2{font-size:19px;margin:0}
+.interrogate-page .ir-question-form,.interrogate-page .ir-evidence-form{display:flex;gap:10px;align-items:stretch}
+.interrogate-page .ir-question-form input,.interrogate-page .ir-evidence-form select{flex:1;min-width:0;width:100%;margin:0;background:#fbfaf7;border:1px solid #d6d0c5}
+.interrogate-page .ir-question-form button,.interrogate-page .ir-evidence-form button{margin:0;white-space:nowrap;border-radius:5px;box-shadow:none}
+.interrogate-page .ir-examples{font-size:12px;color:#8a8f93;margin:12px 0 0}
+.interrogate-page .ir-present>p{font-size:13px;margin:0 0 13px}
+.interrogate-page .ir-no-evidence{background:#f5f2ec;padding:18px;font-size:13px}
+.interrogate-page .ir-no-evidence p{margin:5px 0}
+.interrogate-page .ir-no-evidence a{font-weight:700}
+.interrogate-page .ir-presented{border-top:1px solid #e7e1d8;margin-top:20px;padding-top:16px}
+.interrogate-page .ir-presented h3{font-size:14px;margin:0 0 10px}
+.interrogate-page .ir-tags{display:flex;gap:8px;flex-wrap:wrap}
+.interrogate-page .ir-tags span{background:#e8eee8;border:1px solid #cbdccb;border-radius:3px;padding:5px 9px;font-size:12px}
+.interrogate-page .ir-navigation{display:flex;flex-wrap:wrap;gap:9px;padding:6px 0}
+.interrogate-page .ir-navigation a{padding:9px 12px;border:1px solid #d4cec4;background:#fffdf9;color:#45566a;font-size:12px}
+.interrogate-page .ir-navigation a:hover{border-color:#a2575d}
+.interrogate-page .ir-navigation .ir-clear{color:#a2575d}
+.interrogate-page .ir-sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media(max-width:850px){.interrogate-page .ir-layout{grid-template-columns:1fr}.interrogate-page .ir-sidebar{display:grid;grid-template-columns:1fr 1fr}.interrogate-page .ir-dossier{grid-row:span 2}}
+@media(max-width:600px){.interrogate-page .ir-layout{width:calc(100% - 24px);margin:14px auto}.interrogate-page .ir-sidebar{display:flex}.interrogate-page .ir-top-inner{padding:13px 12px}.interrogate-page .ir-brand strong{font-size:16px}.interrogate-page .ir-topbar a{font-size:11px}.interrogate-page section{padding:18px}.interrogate-page .ir-panel-heading{padding:18px 17px 10px}.interrogate-page .ir-hint{padding:0 17px 14px}.interrogate-page .ir-chat{padding:17px;max-height:480px}.interrogate-page .ir-bubble{max-width:94%}.interrogate-page .ir-question-form,.interrogate-page .ir-evidence-form{flex-direction:column}.interrogate-page .ir-question-form button,.interrogate-page .ir-evidence-form button{width:100%}}
+@media(prefers-reduced-motion:reduce){.interrogate-page *{scroll-behavior:auto!important;transition:none!important}}
+
+/* =========================================================
+   CHARACTER CONFRONTATION / VISUAL NOVEL LAYOUT
+   Append-only overrides: original forms and backend hooks unchanged.
+========================================================= */
+.interrogate-page .ir-layout{max-width:1440px;grid-template-columns:minmax(270px,320px) minmax(0,1fr);gap:18px}
+.interrogate-page .ir-sidebar{gap:12px}
+.interrogate-page .ir-dossier{padding:19px 22px}
+.interrogate-page .ir-dossier h1{font-size:27px;margin-bottom:10px}
+.interrogate-page .ir-description{margin:9px 0}
+.interrogate-page .ir-state{padding:10px 13px}
+.interrogate-page .ir-statement{padding:17px 20px}
+.interrogate-page .ir-statement blockquote{font-size:13px;padding:10px 12px}
+.interrogate-page .ir-main-panel{gap:0;background:#fffdf9;border:1px solid #d6d0c5;border-radius:5px;overflow:hidden;box-shadow:0 5px 18px rgba(40,45,50,.045)}
+.interrogate-page .ir-main-panel>section{border:0;border-radius:0;box-shadow:none}
+.interrogate-page .ir-conversation{display:flex;flex-direction:column;min-height:0}
+.interrogate-page .ir-panel-heading{padding:20px 25px 10px}
+.interrogate-page .ir-panel-heading h2{font-size:23px}
+.interrogate-page .ir-chat{min-height:190px;height:clamp(220px,35vh,420px);max-height:none;padding:22px 25px;background:linear-gradient(180deg,#f3f0e9,#f7f4ee)}
+.interrogate-page .ir-chat-entry{margin-bottom:14px}
+.interrogate-page .ir-bubble{max-width:80%;padding:12px 16px}
+.interrogate-page .ir-interaction-dock{border-top:3px solid #b99b70;background:#fffdf9}
+.interrogate-page .ir-interaction-dock section{padding:18px 25px;margin:0;border:0;border-radius:0;box-shadow:none}
+.interrogate-page .ir-interaction-dock .ir-question{border-bottom:1px solid #e8e1d8}
+.interrogate-page .ir-section-label{margin-bottom:9px}
+.interrogate-page .ir-section-label h2{font-size:17px}
+.interrogate-page .ir-examples{margin-top:7px}
+.interrogate-page .ir-navigation{padding:13px 25px 19px;border-top:1px solid #e8e1d8}
+.interrogate-page .ir-event{border-left:5px solid #a2575d;box-shadow:0 3px 12px rgba(0,0,0,.04)}
+.interrogate-page .ir-unlock{border-left-color:#548363}
+@media(max-width:850px){.interrogate-page .ir-layout{grid-template-columns:1fr}.interrogate-page .ir-sidebar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.interrogate-page .ir-dossier{grid-row:span 2}.interrogate-page .ir-chat{height:330px}}
+
+/* =========================================================
+   COMPACT SUSPECT DOSSIER — NO PORTRAIT
+   Overrides scoped to interrogation only.
+========================================================= */
+.interrogate-page .ir-layout {
+    grid-template-columns: minmax(250px, 290px) minmax(0, 1fr);
+    gap: 18px;
+}
+.interrogate-page .ir-dossier { padding: 20px 22px; }
+.interrogate-page .ir-subject-id {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 16px 0 18px;
+    padding: 15px 16px;
+    background: #f4f1eb;
+    border-left: 3px solid #a2575d;
+}
+.interrogate-page .ir-subject-id span {
+    color: #9a805c;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+}
+.interrogate-page .ir-subject-id strong {
+    color: #303f53;
+    font-size: 27px;
+    line-height: 1.4;
+    letter-spacing: 2px;
+}
+.interrogate-page .ir-subject-id small {
+    color: #6e7986;
+    font-size: 12px;
+}
+.interrogate-page .ir-chat {
+    height: clamp(300px, 46vh, 540px);
+}
+.interrogate-page .ir-empty { padding: 55px 16px; }
+@media (max-width: 850px) {
+    .interrogate-page .ir-layout { grid-template-columns: 1fr; }
+    .interrogate-page .ir-sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+    .interrogate-page .ir-dossier { grid-row: auto; }
+}
+@media (max-width: 600px) {
+    .interrogate-page .ir-sidebar { display: flex; }
+    .interrogate-page .ir-chat { height: 340px; }
+}
+
+
+/* 關鍵證據對峙：依後端 system_event 內容分類呈現，不推測犯人 */
+.interrogate-page .ir-event-kicker{display:block;font-size:10px;font-weight:800;letter-spacing:2px;margin-bottom:7px}
+.interrogate-page .ir-contradiction{position:relative;background:#fff0ec;border:1px solid #d9a6a0;border-left:6px solid #a3444d;box-shadow:0 8px 20px rgba(119,43,50,.09);animation:ir-reveal .42s ease-out}
+.interrogate-page .ir-contradiction .ir-event-kicker{color:#a3444d}
+.interrogate-page .ir-contradiction strong{display:block;color:#8f2937;font-size:22px;letter-spacing:2px}
+.interrogate-page .ir-doubt{background:#fff7e8;border:1px solid #ddc99f;border-left:6px solid #a47c40;animation:ir-reveal .42s ease-out}
+.interrogate-page .ir-doubt .ir-event-kicker,.interrogate-page .ir-doubt strong{color:#8a672f}
+.interrogate-page .ir-doubt strong{display:block;font-size:20px;letter-spacing:1px}
+.interrogate-page .ir-contradiction p,.interrogate-page .ir-doubt p{font-size:14px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere}
+.interrogate-page .ir-contradiction small,.interrogate-page .ir-doubt small{display:block;margin-top:10px;font-size:11px;color:#736d66}
+@keyframes ir-reveal{from{opacity:.3;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.interrogate-page .ir-contradiction,.interrogate-page .ir-doubt{animation:none}}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eee9de">
+  <title>AI CRIME FILES｜案件檔案室</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body class="home-page">
+  <main class="home-shell">
+    <nav class="home-topbar" aria-label="網站導覽">
+      <a class="home-brand" href="{{ url_for('index') }}"><span class="home-brand-mark">✦</span> ACF <span class="home-brand-sub">/ ARCHIVE</span></a>
+      <span class="home-top-meta">PRIVATE INVESTIGATION BUREAU <span class="home-top-dot"></span> CASE INDEX</span>
+    </nav>
+
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="home-hero-copy">
+        <div class="home-eyebrow"><span class="home-eyebrow-line"></span> INTERACTIVE DETECTIVE EXPERIENCE</div>
+        <p class="home-issue">偵探檔案室 <span>— VOL. 01</span></p>
+        <h1 id="home-title">每個人都有秘密，<br><em>但真相只有一個。</em></h1>
+        <p class="home-lead">走進犯罪現場、調查蛛絲馬跡，與 AI 嫌疑人正面交鋒。<br>你的每一次提問，都可能改變調查方向。</p>
+        <a class="home-primary" href="#cases">選擇調查案件 <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="home-hero-art" aria-hidden="true">
+        <div class="home-art-sheet home-art-sheet-back"></div>
+        <div class="home-art-sheet home-art-sheet-front">
+          <div class="home-art-top">CONFIDENTIAL <span>FILE NO. 001</span></div>
+          <div class="home-art-circle"><span class="home-gem">◆</span></div>
+          <div class="home-art-stamp">EVIDENCE<br>REVIEW</div>
+          <div class="home-art-bottom">THE MISSING CRIMSON HEART <span>21:15 / VICTORIA HOTEL</span></div>
+        </div>
+        <span class="home-art-cross">+</span>
+      </div>
+    </section>
+
+    <section class="home-case-section" id="cases" aria-labelledby="cases-title">
+      <div class="home-section-heading">
+        <div><p class="home-kicker">SELECT YOUR CASE</p><h2 id="cases-title">案件檔案 <span>/ CASE FILES</span></h2></div>
+        <span class="home-case-count">01 AVAILABLE / 02 PLANNED</span>
+      </div>
+      <div class="home-case-grid">
+        <article class="home-case home-case-active">
+          <div class="home-case-top"><span>CASE FILE / 001</span><span class="home-case-status">● 可進入調查</span></div>
+          <div class="home-case-symbol" aria-hidden="true">◆</div>
+          <p class="home-case-type">JEWEL THEFT · 維多利亞飯店</p>
+          <h3>消失的緋紅之心</h3>
+          <p class="home-case-desc">慈善晚宴上，價值不菲的紅寶石項鍊離奇失竊。展示櫃完好無損，監視畫面卻出現空白。四名嫌疑人之中，誰在隱瞞真相？</p>
+          <div class="home-case-footer"><span>01 / INVESTIGATION</span><a href="{{ url_for('case') }}" class="home-case-enter">開啟案件 <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <article class="home-case home-case-locked" aria-label="第二個案件，尚未開放">
+          <div class="home-case-top"><span>CASE FILE / 002</span><span class="home-case-status">○ 尚未開放</span></div>
+          <div class="home-case-symbol home-case-question" aria-hidden="true">?</div>
+          <p class="home-case-type">NEXT INVESTIGATION</p>
+          <h3>未公開案件</h3>
+          <p class="home-case-desc">第二個案件正在規劃中。新的現場、新的證詞，以及等待你揭開的謎團，將在未來開放。</p>
+          <div class="home-case-footer"><span>02 / COMING SOON</span><span class="home-case-disabled">尚未解鎖 <span aria-hidden="true">↗</span></span></div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="home-footer"><span>AI CRIME FILES © DETECTIVE EXPERIENCE</span><span>觀察 · 詢問 · 推理 · 指控</span></footer>
+  </main>
+</body>
+</html>

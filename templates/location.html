@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {{ location.name }}｜現場調查
+    </title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/location.css') }}">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+</head>
+
+
+<body class="location-body">
+{% include "_quicknav.html" %}
+
+    <main class="location-container">
+
+
+        <!-- ==================================================
+         地點頁首
+    ================================================== -->
+
+        <section class="location-header">
+
+            <div class="location-header-top">
+
+                <span>
+                CASE 001
+            </span>
+
+                <span>
+                CRIME SCENE
+            </span>
+
+            </div>
+
+
+            <div class="location-title-area">
+
+                <div>
+
+                    <p class="location-label">
+                        INVESTIGATION AREA
+                    </p>
+
+                    <h1>
+                        {{ location.name }}
+                    </h1>
+
+                    <p class="location-description">
+                        {{ location.description }}
+                    </p>
+
+                </div>
+
+
+                <a href="{{ url_for('investigate') }}" class="location-back">
+                ← 返回現場區域
+            </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+         搜索狀態
+    ================================================== -->
+
+        <section class="location-progress">
+
+            {% set ns_progress = namespace(found=0) %} {% for evidence_id in location.evidence %} {% if evidence_id in discovered %} {% set ns_progress.found = ns_progress.found + 1 %} {% endif %} {% endfor %}
+
+
+            <div class="location-section-heading">
+
+                <span>
+                01
+            </span>
+
+                <div>
+
+                    <small>
+                    SEARCH PROGRESS
+                </small>
+
+                    <h2>
+                        區域搜索狀態
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="location-progress-content">
+
+                <div class="location-progress-number">
+
+                    <strong>
+                    {{ ns_progress.found }}
+                </strong>
+
+                    <span>
+                    / {{ location.evidence | length }}
+                </span>
+
+                    <p>
+                        已發現證據
+                    </p>
+
+                </div>
+
+
+                <div class="location-progress-track">
+
+                    <div class="location-progress-bar" style="width: {{ ((ns_progress.found / (location.evidence | length)) * 100) | round }}%;">
+                    </div>
+
+                </div>
+
+
+                <div class="location-progress-text">
+
+                    {% if ns_progress.found == 0 %} 尚未開始搜索 {% elif ns_progress.found
+                    < location.evidence | length %} 此區域仍有線索 {% else %} 此區域搜索完成 {% endif %} </div>
+
+                </div>
+
+        </section>
+
+
+        <!-- ==================================================
+         可調查項目
+    ================================================== -->
+
+        <section class="location-search">
+
+            <div class="location-section-heading">
+
+                <span>
+                02
+            </span>
+
+                <div>
+
+                    <small>
+                    SEARCH TARGET
+                </small>
+
+                    <h2>
+                        現場可調查項目
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <p class="location-search-intro">
+                仔細檢查現場。 某些不起眼的位置， 可能藏有改變案件方向的重要線索。
+            </p>
+
+
+            <div class="location-evidence-list">
+
+
+                {% for evidence_id in location.evidence %} {% set item = evidence[evidence_id] %}
+
+
+                <!-- ==================================================
+                     已發現
+                ================================================== -->
+
+                {% if evidence_id in discovered %}
+
+
+                <article class="location-evidence-item discovered">
+
+
+                    <div class="location-item-number">
+
+                        {{ "%02d" | format(loop.index) }}
+
+                    </div>
+
+
+                    <div class="location-item-main">
+
+
+                        <div class="location-item-heading">
+
+                            <div>
+
+                                <small>
+                                        EVIDENCE RECOVERED
+                                    </small>
+
+                                <h3>
+                                    {{ item.name }}
+                                </h3>
+
+                            </div>
+
+
+                            <span class="location-item-status found">
+                                    已取得
+                                </span>
+
+                        </div>
+
+
+                        <p>
+                            {{ item.description }}
+                        </p>
+
+
+                        <div class="location-item-bottom">
+
+                            <span>
+                                    發現位置｜{{ item.location }}
+                                </span>
+
+
+                            <a href="/evidence/{{ evidence_id }}" class="location-action secondary">
+                                    查看證據
+                                    <span>→</span>
+                                </a>
+
+                        </div>
+
+
+                    </div>
+
+
+                </article>
+
+
+                <!-- ==================================================
+                     尚未調查
+                ================================================== -->
+
+                {% else %}
+
+
+                <article class="location-evidence-item unknown">
+
+
+                    <div class="location-item-number">
+
+                        {{ "%02d" | format(loop.index) }}
+
+                    </div>
+
+
+                    <div class="location-item-main">
+
+
+                        <div class="location-item-heading">
+
+                            <div>
+
+                                <small>
+                                        UNEXAMINED AREA
+                                    </small>
+
+                                <h3>
+                                    未調查區域
+                                </h3>
+
+                            </div>
+
+
+                            <span class="location-item-status unknown">
+                                    未搜索
+                                </span>
+
+                        </div>
+
+
+                        <p>
+                            這個位置尚未完成檢查。 進一步搜索後， 可能會發現與案件相關的證據。
+                        </p>
+
+
+                        <div class="location-item-bottom">
+
+                            <span>
+                                    調查結果｜未知
+                                </span>
+
+
+                            <a href="/discover/{{ evidence_id }}" class="location-action">
+                                    開始搜索
+                                    <span>→</span>
+                                </a>
+
+                        </div>
+
+
+                    </div>
+
+
+                </article>
+
+
+                {% endif %} {% endfor %}
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+         調查提醒
+    ================================================== -->
+
+        <section class="location-note">
+
+            <span>
+            INVESTIGATION NOTE
+        </span>
+
+            <h3>
+                發現證據之後，不代表調查已經結束
+            </h3>
+
+            <p>
+                證據會自動加入案件資料庫。 部分證據可以在訊問時出示給嫌疑人， 用來檢查證詞是否存在矛盾。
+            </p>
+
+        </section>
+
+
+
+    </main>
+
+</body>
+
+</html>

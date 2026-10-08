@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>嫌疑人名單｜CASE 001</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+</head>
+
+
+<body>
+{% include "_quicknav.html" %}
+
+    <header>
+
+        <p class="case-number">
+            SUSPECT FILES
+        </p>
+
+        <h1>👥 嫌疑人名單</h1>
+
+        <p>
+            CASE 001｜消失的緋紅之心
+        </p>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- ==================================================
+         說明
+         ================================================== -->
+
+        <section>
+
+            <h2>📋 調查對象</h2>
+
+            <p>
+                案發期間共有4名人物的行蹤值得調查。
+            </p>
+
+            <p>
+                你可以自由選擇訊問對象， 並根據取得的證據向他們提出質疑。
+            </p>
+
+            <blockquote>
+                注意：證詞存在謊言， 並不代表說謊的人就是犯人。
+            </blockquote>
+
+        </section>
+
+
+        <!-- ==================================================
+         嫌疑人卡片
+         ================================================== -->
+
+        <section>
+
+            <h2>🔎 嫌疑人檔案</h2>
+
+
+            <div class="card-grid">
+
+
+                {% for suspect_id, suspect in suspects.items() %}
+
+
+                <div class="card suspect-card">
+
+
+                    <!-- 人物編號 -->
+
+                    <p class="suspect-number">
+                        SUSPECT {{ loop.index | string }}
+                    </p>
+
+
+                    <!-- 暫時人物圖示 -->
+
+                    <div class="suspect-avatar">
+                        👤
+                    </div>
+
+
+                    <!-- 姓名 -->
+
+                    <h2>
+                        {{ suspect.name }}
+                    </h2>
+
+
+                    <!-- 身分 -->
+
+                    <p class="suspect-role">
+
+                        {{ suspect.role }}
+
+                    </p>
+
+
+                    <!-- 基本資料 -->
+
+                    <p>
+
+                        <strong>年齡：</strong> {{ suspect.age }} 歲
+
+                    </p>
+
+
+                    <p>
+
+                        {{ suspect.description }}
+
+                    </p>
+
+
+                    <hr>
+
+
+                    <!-- 初步證詞 -->
+
+                    <h3>
+                        📋 初步證詞
+                    </h3>
+
+
+                    <p class="statement">
+
+                        「{{ suspect.statement }}」
+
+                    </p>
+
+
+                    <!-- 訊問 -->
+
+                    <a href="/interrogate/{{ suspect_id }}">
+
+                        <button>
+                            🔎 訊問此人
+                        </button>
+
+                    </a>
+
+
+                </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+        </section>
+
+
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,278 @@
+/* =========================================================
+   CASE 001｜Detective File Theme
+   CSS 整理版（2026-10-07）
+
+   區塊索引
+   1. 全域基礎樣式
+   2. 共用元件：卡片、按鈕、表單、狀態、進度條
+   3. 嫌疑人／訊問／證據／筆記等既有頁面
+   4. 調查總部（.hq-*）
+   5. 現場調查（.scene-*）
+   6. 地點調查（.location-*）
+
+   注意：本版只整理格式與註解，不改 selector 順序，
+   以避免影響目前已完成頁面的 CSS cascade。
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    background: linear-gradient(135deg, #f4f1ea 0%, #e9edf2 100%);
+    color: #273142;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   頁首
+   ========================================================= */
+
+header {
+    background: linear-gradient(135deg, #34445c, #50647e);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(34, 45, 60, 0.18);
+}
+
+header h1 {
+    margin: 0 0 8px;
+    color: white;
+    font-size: 32px;
+    letter-spacing: 3px;
+}
+
+header p {
+    margin: 0;
+    color: #e8edf4;
+    letter-spacing: 2px;
+}
+
+/* =========================================================
+   主畫面
+   ========================================================= */
+
+main {
+    width: min(1050px, 92%);
+    margin: 35px auto 60px;
+}
+
+/* =========================================================
+   卡片
+   ========================================================= */
+
+section {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid #d7dce3;
+    border-left: 5px solid #b45d68;
+    border-radius: 12px;
+    padding: 26px;
+    margin-bottom: 22px;
+    box-shadow: 0 7px 22px rgba(50, 62, 80, 0.08);
+}
+
+/* =========================================================
+   標題
+   ========================================================= */
+
+h1,
+h2,
+h3 {
+    color: #34445c;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 23px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+p {
+    color: #515c6c;
+    text-align: justify;
+    text-justify: inter-ideograph;
+    line-height: 1.9;
+}
+
+header p,
+.suspect-number,
+.suspect-role,
+.case-number {
+    text-align: center;
+}
+
+strong {
+    color: #303b4c;
+}
+
+/* =========================================================
+   分隔線
+   ========================================================= */
+
+hr {
+    border: none;
+    height: 1px;
+    background: #dfe3e8;
+    margin: 28px 0;
+}
+
+/* =========================================================
+   一般按鈕
+   ========================================================= */
+
+button {
+    background: linear-gradient(135deg, #526b8a, #435a77);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin: 6px;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(48, 63, 83, 0.15);
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #627d9f, #4e6786);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(48, 63, 83, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* =========================================================
+   禁用按鈕
+   ========================================================= */
+
+button:disabled {
+    background: #d5d9df;
+    color: #9299a3;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* =========================================================
+   連結
+   ========================================================= */
+
+a {
+    color: #526b8a;
+    text-decoration: none;
+}
+
+/* =========================================================
+   輸入框
+   ========================================================= */
+
+input[type="text"],
+select {
+    background: white;
+    color: #303a49;
+    border: 1px solid #cbd2db;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+}
+
+input[type="text"] {
+    width: min(620px, 100%);
+}
+
+select {
+    min-width: 270px;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: #637d9d;
+    box-shadow: 0 0 0 3px rgba(82, 107, 138, 0.12);
+}
+
+/* =========================================================
+   Radio
+   ========================================================= */
+
+input[type="radio"] {
+    accent-color: #526b8a;
+    margin-right: 8px;
+}
+
+/* =========================================================
+   引言
+   ========================================================= */
+
+blockquote {
+    margin: 20px 0;
+    padding: 20px 25px;
+    background: #f7f4ed;
+    border-left: 5px solid #c49754;
+    color: #4e5661;
+    border-radius: 5px;
+}
+
+/* =========================================================
+   卡片 Grid
+   ========================================================= */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    background: #f9fafc;
+    border: 1px solid #d9dee6;
+    border-radius: 10px;
+    padding: 20px;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: #879bb3;
+    box-shadow: 0 8px 18px rgba(55, 70, 90, 0.1);
+}
+
+/* =========================================================
+   狀態
+   ========================================================= */
+
+.status {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: #edf1f6;
+    color: #53657a;
+    font-size: 13px;
+}
+
+.status-warning {
+    background: #fff3d8;
+    color: #88641c;
+}
+
+.status-danger {
+    background: #fbe3e5;
+    color: #a14852;
+}
+
+.status-success {
+    background: #e2f3e9;
+    color: #387353;
+}
+

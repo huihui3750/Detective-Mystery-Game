@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        現場調查｜CASE 001
+    </title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/investigation.css') }}">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+</head>
+
+
+<body class="scene-body">
+{% include "_quicknav.html" %}
+
+    <main class="scene-container">
+
+
+        <!-- ==================================================
+         頁首
+    ================================================== -->
+
+        <section class="scene-header">
+
+            <div class="scene-header-top">
+
+                <span>
+                CASE 001
+            </span>
+
+                <span>
+                SCENE INVESTIGATION
+            </span>
+
+            </div>
+
+
+            <div class="scene-title">
+
+                <div>
+
+                    <p class="scene-label">
+                        VICTORIA HOTEL
+                    </p>
+
+                    <h1>
+                        現場調查
+                    </h1>
+
+                    <p>
+                        搜索維多利亞飯店內與案件相關的區域， 尋找案發期間留下的證據。
+                    </p>
+
+                </div>
+
+
+                <a href="{{ url_for('dashboard') }}" class="scene-back">
+                ← 返回調查總部
+            </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+         調查進度
+    ================================================== -->
+
+        <section class="scene-progress">
+
+            <div class="scene-section-title">
+
+                <span>
+                01
+            </span>
+
+                <div>
+
+                    <small>
+                    INVESTIGATION PROGRESS
+                </small>
+
+                    <h2>
+                        搜索進度
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="scene-progress-info">
+
+                <div>
+
+                    <strong>
+                    {{ discovered | length }}
+                </strong>
+
+                    <span>
+                    / {{ evidence | length }}
+                </span>
+
+                    <p>
+                        已取得證據
+                    </p>
+
+                </div>
+
+
+                <div class="scene-progress-track">
+
+                    <div class="scene-progress-bar" style="width: {{ ((discovered | length) / (evidence | length) * 100) | round }}%;">
+                    </div>
+
+                </div>
+
+
+                <div class="scene-progress-status">
+
+                    {% if discovered | length == 0 %} 調查尚未開始 {% elif discovered | length
+                    < evidence | length %} 尚有證據未被發現 {% else %} 現場證據已全部取得 {% endif %} </div>
+
+                </div>
+
+        </section>
+
+
+        <!-- ==================================================
+         地點
+    ================================================== -->
+
+        <section class="scene-locations">
+
+            <div class="scene-section-title">
+
+                <span>
+                02
+            </span>
+
+                <div>
+
+                    <small>
+                    INVESTIGATION AREA
+                </small>
+
+                    <h2>
+                        選擇調查區域
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <p class="scene-location-intro">
+                選擇一個地點進行搜索。 已經完成搜索的區域仍可以再次進入查看。
+            </p>
+
+
+            <div class="scene-location-list">
+
+
+                {% for id, location in locations.items() %}
+
+
+                <!-- 計算此地點已取得多少證據 -->
+
+                {% set ns = namespace(found=0) %} {% for evidence_id in location.evidence %} {% if evidence_id in discovered %} {% set ns.found = ns.found + 1 %} {% endif %} {% endfor %}
+
+
+                <article class="scene-location-card">
+
+
+                    <!-- 編號 -->
+
+                    <div class="scene-location-number">
+
+                        {{ "%02d" | format(loop.index) }}
+
+                    </div>
+
+
+                    <!-- 地點內容 -->
+
+                    <div class="scene-location-content">
+
+                        <div class="scene-location-heading">
+
+                            <div>
+
+                                <small>
+                                    INVESTIGATION AREA
+                                </small>
+
+                                <h2>
+                                    {{ location.name }}
+                                </h2>
+
+                            </div>
+
+
+                            <!-- 狀態 -->
+
+                            {% if ns.found == location.evidence | length %}
+
+                            <span class="scene-status completed">
+                                    搜索完成
+                                </span> {% elif ns.found > 0 %}
+
+                            <span class="scene-status investigating">
+                                    調查中
+                                </span> {% else %}
+
+                            <span class="scene-status not-started">
+                                    未搜索
+                                </span> {% endif %}
+
+                        </div>
+
+
+                        <p class="scene-location-description">
+
+                            {{ location.description }}
+
+                        </p>
+
+
+                        <div class="scene-location-footer">
+
+                            <div class="scene-location-evidence">
+
+                                <small>
+                                    EVIDENCE FOUND
+                                </small>
+
+                                <strong>
+                                    {{ ns.found }}
+                                    /
+                                    {{ location.evidence | length }}
+                                </strong>
+
+                            </div>
+
+
+                            <a href="{{ url_for('investigate_location', location_id=id) }}" class="scene-enter">
+
+                                {% if ns.found == location.evidence | length %}
+
+                                    再次查看
+
+                                {% else %}
+
+                                    進入調查
+
+                                {% endif %}
+
+                                <span>
+                                    →
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                {% endfor %}
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+         調查提醒
+    ================================================== -->
+
+        <section class="scene-tip">
+
+            <span class="scene-tip-label">
+            INVESTIGATION NOTE
+        </span>
+
+            <h3>
+                證據與證詞必須交叉比對
+            </h3>
+
+            <p>
+                找到證據後，可以前往訊問嫌疑人。 某些看似普通的證據， 可能會直接推翻某個人的說法。
+            </p>
+
+            <blockquote>
+                「證據本身不會說話，真正重要的是它與證詞之間的矛盾。」
+            </blockquote>
+
+        </section>
+
+
+
+    </main>
+
+</body>
+
+</html>

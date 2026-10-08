@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>訊問 {{ suspect.name }}｜CASE 001</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/interrogate.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+</head>
+<body class="interrogate-page">
+{% include "_quicknav.html" %}
+  <header class="ir-topbar">
+    <div class="ir-top-inner">
+      <a class="ir-back" href="/suspects">← 嫌疑人檔案</a>
+      <div class="ir-brand"><span>CASE 001 / INTERROGATION</span><strong>訊問室</strong></div>
+      <a class="ir-hq" href="/dashboard">調查總部 ↗</a>
+    </div>
+  </header>
+
+  <main class="ir-layout">
+    <aside class="ir-sidebar">
+      <section class="ir-dossier">
+        <div class="ir-dossier-top"><span>PERSONNEL FILE</span><span>CASE 001</span></div>
+        <div class="ir-subject-id"><span>SUBJECT IDENTIFICATION</span><strong>{{ suspect.name }}</strong><small>{{ suspect.role }}</small></div>
+        <p class="ir-overline">嫌疑人檔案</p>
+        <div class="ir-meta"><span>身分</span><strong>{{ suspect.role }}</strong></div>
+        <div class="ir-meta"><span>年齡</span><strong>{{ suspect.age }} 歲</strong></div>
+        <p class="ir-description">{{ suspect.description }}</p>
+        <div class="ir-state"><span class="ir-state-label">目前訊問狀態</span><strong>{{ suspect_state.name }}</strong><p>{{ suspect_state.description }}</p></div>
+      </section>
+      <section class="ir-statement">
+        <p class="ir-overline">INITIAL TESTIMONY</p>
+        <h2>初步證詞</h2>
+        <blockquote>「{{ suspect.statement }}」</blockquote>
+      </section>
+      {% if suspect_id == "zhang" %}
+      <section class="ir-special">
+        <p class="ir-overline">SPECIAL TESTIMONY</p>
+        <h2>關鍵行蹤</h2>
+        {% if "zhang_restricted_area" in unlocked_testimonies %}
+          <p class="ir-success">✓ 關鍵證詞已取得</p>
+          <p>張柏翰承認，21:08 左右曾偷偷進入禁止一般賓客進入的區域。他看到一名穿著飯店制服的人從三樓辦公室方向快速離開，但沒有看清楚對方的臉。</p>
+        {% elif "camera" in presented %}
+          <p class="ir-warning">發現新的證詞疑點</p>
+          <p>監視器在 21:04～21:11 之間出現畫面空白，張柏翰對 21:08 左右的行蹤似乎有所隱瞞。</p>
+          <form method="POST" action="/unlock_testimony/{{ suspect_id }}"><button type="submit" class="ir-action">追問 21:08 的行蹤 →</button></form>
+        {% else %}
+          <p>目前沒有足夠資訊可以進一步追問。也許應該先調查案發時間附近的監視紀錄。</p>
+        {% endif %}
+      </section>
+      {% endif %}
+    </aside>
+
+    <div class="ir-main-panel">
+      <section class="ir-conversation">
+        <div class="ir-panel-heading"><div><p class="ir-overline">LIVE INTERROGATION</p><h2>訊問紀錄</h2></div><span class="ir-live"><i></i> 訊問進行中</span></div>
+        <p class="ir-hint">詢問嫌疑人的行蹤與人物關係，並利用已取得的證據檢查證詞。</p>
+        <div class="ir-chat" id="chat-history" role="log" aria-label="訊問紀錄">
+          {% if history %}
+            {% for message in history %}
+              {% if message.role == "user" %}
+                <div class="ir-chat-entry ir-player"><span class="ir-speaker">偵探 / YOU</span><div class="ir-bubble">{{ message.content }}</div></div>
+              {% elif message.role == "assistant" %}
+                <div class="ir-chat-entry ir-suspect"><span class="ir-speaker">{{ suspect.name }} / SUBJECT</span><div class="ir-bubble">{{ message.content }}</div></div>
+              {% elif message.role == "evidence" %}
+                <div class="ir-event ir-evidence"><strong>▣ EVIDENCE PRESENTED / 證據出示</strong><p>{{ message.content }}</p></div>
+              {% elif message.role == "system_event" %}
+                {% if "證詞矛盾" in message.content %}
+                  <div class="ir-event ir-contradiction" role="status"><span class="ir-event-kicker">CONTRADICTION DETECTED</span><strong>⚠ 證詞矛盾</strong><p>{{ message.content }}</p><small>證據已記錄；證詞矛盾不等於犯罪成立。</small></div>
+                {% elif "行蹤疑點" in message.content or "不在場" in message.content %}
+                  <div class="ir-event ir-doubt" role="status"><span class="ir-event-kicker">INVESTIGATION UPDATE</span><strong>◈ 行蹤疑點</strong><p>{{ message.content }}</p><small>目前僅能確認疑點，尚不能據此認定嫌疑人犯案。</small></div>
+                {% else %}
+                  <div class="ir-event ir-unlock" role="status"><strong>✦ NEW TESTIMONY / 調查事件</strong><p>{{ message.content }}</p></div>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <div class="ir-empty"><span>“</span><h3>訊問尚未開始</h3><p>每一句回答都可能藏著新的疑點。從下方輸入第一個問題。</p></div>
+          {% endif %}
+        </div>
+        {% if error %}<div class="ir-error" role="alert">⚠ {{ error }}</div>{% endif %}
+      </section>
+
+      <div class="ir-interaction-dock">
+      <section class="ir-question">
+        <div class="ir-section-label"><span>01</span><h2>向嫌疑人提問</h2></div>
+        <form method="POST" class="ir-question-form">
+          <label class="ir-sr-only" for="question">輸入訊問問題</label>
+          <input type="text" id="question" name="question" placeholder="例如：21:06 的時候你在哪裡？" maxlength="200" required autocomplete="off">
+          <button type="submit">送出問題 ↗</button>
+        </form>
+        <p class="ir-examples">提問方向：案發時的行蹤 ／ 展示櫃鑰匙 ／ 與其他嫌疑人的關係</p>
+      </section>
+
+      <section class="ir-present">
+        <div class="ir-section-label"><span>02</span><h2>出示證據</h2></div>
+        {% if discovered %}
+          <p>從證物庫挑選已取得的證據，觀察嫌疑人的反應。</p>
+          <form method="POST" action="/present_evidence/{{ suspect_id }}" class="ir-evidence-form">
+            <label class="ir-sr-only" for="evidence_id">選擇證據</label>
+            <select name="evidence_id" id="evidence_id" required>
+              <option value="">— 選擇要出示的證據 —</option>
+              {% for evidence_id in discovered %}
+                {% set item = evidence[evidence_id] %}
+                <option value="{{ evidence_id }}">{{ item.icon }} {{ item.name }}{% if evidence_id in presented %}（已出示）{% endif %}</option>
+              {% endfor %}
+            </select>
+            <button type="submit">出示證據 ↗</button>
+          </form>
+        {% else %}
+          <div class="ir-no-evidence"><strong>尚未取得任何證據</strong><p>先搜索案發現場，再回到訊問室出示證據。</p><a href="/investigate">前往現場調查 →</a></div>
+        {% endif %}
+        {% if presented %}
+          <div class="ir-presented"><h3>已出示的證據</h3><div class="ir-tags">
+          {% for evidence_id in presented %}{% set item = evidence[evidence_id] %}<span>{{ item.icon }} {{ item.name }} ✓</span>{% endfor %}
+          </div></div>
+        {% endif %}
+      </section>
+      </div>
+      <nav class="ir-navigation" aria-label="訊問紀錄操作"><a href="/clear_chat/{{ suspect_id }}" class="ir-clear" onclick="return confirm('確定清除這名嫌疑人的訊問紀錄嗎？');">清除對話紀錄</a></nav>
+    </div>
+  </main>
+  <script>
+    (function () {
+      const chat = document.getElementById('chat-history');
+      if (chat) chat.scrollTop = chat.scrollHeight;
+    })();
+  </script>
+</body>
+</html>

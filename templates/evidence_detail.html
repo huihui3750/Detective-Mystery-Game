@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {{ item.name }}｜證據資料
+    </title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+</head>
+
+
+<body>
+{% include "_quicknav.html" %}
+
+
+    <header>
+
+        <p class="case-number">
+            EVIDENCE REPORT
+        </p>
+
+        <h1>
+            {{ item.icon }} 證物分析
+        </h1>
+
+        <p>
+            CASE 001｜消失的緋紅之心
+        </p>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- ==================================================
+         證物基本資料
+         ================================================== -->
+
+        <section class="evidence-report">
+
+            <div class="evidence-report-header">
+
+                <div class="evidence-large-icon">
+
+                    {{ item.icon }}
+
+                </div>
+
+
+                <div>
+
+                    <p class="evidence-label">
+                        CASE 001｜EVIDENCE
+                    </p>
+
+                    <h1>
+                        {{ item.name }}
+                    </h1>
+
+                    <span class="status status-success">
+                    ✓ 已取得
+                </span>
+
+                </div>
+
+            </div>
+
+
+            <hr>
+
+
+            <div class="evidence-info">
+
+
+                <div class="evidence-info-row">
+
+                    <strong>
+                    📍 發現位置
+                </strong>
+
+                    <span>
+                    {{ item.location }}
+                </span>
+
+                </div>
+
+
+                <div class="evidence-info-row">
+
+                    <strong>
+                    📂 證物狀態
+                </strong>
+
+                    <span>
+                    已登錄案件證據庫
+                </span>
+
+                </div>
+
+
+                <div class="evidence-info-row">
+
+                    <strong>
+                    🔎 案件編號
+                </strong>
+
+                    <span>
+                    CASE 001
+                </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+         證據內容
+         ================================================== -->
+
+        <section>
+
+            <h2>
+                📋 調查結果
+            </h2>
+
+            <p class="evidence-description">
+
+                {{ item.description }}
+
+            </p>
+
+        </section>
+
+
+        <!-- ==================================================
+         推理分析
+         ================================================== -->
+
+        <section>
+
+            <h2>
+                🧠 推理方向
+            </h2>
+
+            <p>
+                這項證據已經加入案件資料庫。 單一證據未必能直接證明犯人的身分， 建議將它與嫌疑人的證詞、時間線以及其他證據交叉比對。
+            </p>
+
+            <div class="analysis-question">
+
+                <strong>
+                🔎 思考：
+            </strong>
+
+                <p>
+                    這項證據是否與某位嫌疑人的說法產生矛盾？
+                </p>
+
+            </div>
+
+        </section>
+
+
+<section class="case-next-step"><h2>🧭 建議下一步</h2>
+{% if evidence_id == 'backdoor_camera' %}
+<p>後門影像可以用來核對王志明的行蹤，但不能單憑此證明他犯案。</p>
+<a class="case-next-primary" href="{{ url_for('interrogate', suspect_id='wang') }}">前往訊問王志明 →</a>
+{% elif evidence_id == 'kitchen_log' %}
+<p>工作紀錄存在空白時段。你可以詢問陳雨晴這段時間去了哪裡。</p>
+<a class="case-next-primary" href="{{ url_for('interrogate', suspect_id='chen') }}">前往訊問陳雨晴 →</a>
+{% else %}
+<p>證據已加入資料庫。繼續探索其他地點，再將線索交叉比對。</p>
+<a class="case-next-primary" href="{{ url_for('investigate') }}">繼續現場調查 →</a>
+{% endif %}
+<p><a href="{{ url_for('evidence') }}">← 返回證物庫</a></p></section>
+
+
+
+    </main>
+
+
+</body>
+
+</html>
